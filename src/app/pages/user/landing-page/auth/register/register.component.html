@@ -1,0 +1,75 @@
+<div class="mt-10 text-center">
+  <h2 class="text-2xl font-sans font-bold pb-4" style="font-size: 30px">Đăng ký</h2>
+</div>
+<form
+  class="w-2/5 m-auto"
+  nz-form
+  nzNoColon
+  nzLayout="vertical"
+  [formGroup]="registerForm"
+>
+  <nz-form-item>
+    <nz-form-label class="font-bold">Tên tài khoản&nbsp; <span style="color: red">*</span></nz-form-label>
+    <nz-form-control>
+      <input type="text" nz-input formControlName="user" placeholder="Nhập tên tài khoản" [(ngModel)]="queryRegister.user"
+      />
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label class="font-bold" >Mật khẩu&nbsp; <span style="color: red">*</span></nz-form-label>
+    <nz-form-control>
+      <nz-input-group [nzSuffix]="eye">
+        <input
+          nz-input
+          [type]="showPassword ? 'text' : 'password'"
+          id=" nzSearch"
+          name=" nzSearch"
+          placeholder="Nhập mật khẩu"
+          formControlName="pass"
+          [(ngModel)]="queryRegister.pass"
+
+        />
+      </nz-input-group>
+      <ng-template #eye>
+        <span
+          nz-icon
+          [nzType]="showPassword ? 'eye-invisible' : 'eye'"
+          nzTheme="outline"
+          class="cursor-pointer"
+          (click)="showPassword = !showPassword"
+        ></span>
+      </ng-template>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label class="font-bold">Họ và tên</nz-form-label>
+    <nz-form-control>
+      <input type="text" nz-input formControlName="name" placeholder="Nhập họ và tên" [(ngModel)]="queryRegister.name"/>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label class="font-bold"> Số điện thoại </nz-form-label>
+    <nz-form-control>
+      <input type="text" nz-input formControlName="phoneNumber" placeholder="Nhập số điện thoại" [(ngModel)]="queryRegister.phoneNumber"/>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label class="font-bold"> Email </nz-form-label>
+    <nz-form-control>
+      <input type="text" nz-input formControlName="email" placeholder="Nhập địa chỉ email"[(ngModel)]="queryRegister.email"/>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label class="font-bold">Địa chỉ</nz-form-label>
+    <nz-form-control>
+      <input type="text" nz-input formControlName="address" placeholder="Nhập địa chỉ" [(ngModel)]="queryRegister.address"/>
+    </nz-form-control>
+  </nz-form-item>
+  <div>
+    <button  class="btn-submit p-2" (click)="register()">{{ "ĐĂNG KÝ" | uppercase }}</button>
+  </div>
+  <div class="mt-4 text-center">
+    <p class="mt-2 name-card">ĐÃ CÓ TÀI KHOẢN?</p>
+    <p class="link" (click)="login()">ĐĂNG NHẬP</p>
+  </div>
+</form>
