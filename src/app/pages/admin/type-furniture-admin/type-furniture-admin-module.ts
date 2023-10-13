@@ -1,8 +1,8 @@
-import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 import { NzPopoverModule } from 'ng-zorro-antd/popover';
-import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
-export const TypeFurnitureModule = [
+
+export const TypeFurnitureOfAdminModule = [
   CommonModule,
   NzPopoverModule,
   RouterModule,
