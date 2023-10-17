@@ -1,20 +1,18 @@
-<ul class="furniture">
-  <li class="item-furniture">
-    <span>
-      <!-- {{ item.title }} -->
-    </span>
-    <ng-container>
-      <div class="wrap mt-2">
-        <div class="menu-sub mt-2 mb-3">
-          <ul class="mt-3">
-            <li style="margin: auto">
-              <span class="font-semibold sub-item">
-                <!-- {{ sub.name }} -->
-              </span>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </ng-container>
-  </li>
-</ul>
+<div class="container m-auto">
+  <div class="wrap">
+    <div class="col-span-1 leading-9">
+      <ng-container *ngFor="let item of dataRow1">
+        <h2 class="font-bold text-sm font-30 mb-7">
+          <!-- {{ item.title | uppercase }} -->
+        </h2>
+        <p
+          *ngFor="let item of item.content"
+          [routerLink]="item.routerLink"
+          class="title font-medium hover:text-teal-700 hover:underline cursor-pointer"
+        >
+          {{ item.label | uppercase }}
+        </p>
+      </ng-container>
+    </div>
+  </div>
+</div>
