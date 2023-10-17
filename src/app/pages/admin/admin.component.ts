@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { HeaderAdminComponent } from './header-admin/header-admin.component';
-import { FooterAdminComponent } from './footer-admin/footer-admin.component';
-import { TypeFurnitureOfAdminComponent } from './type-furniture-admin/type-furniture-admin.component';
+import { AdminModule } from './admin-module';
+import { NewFunitureService } from '../user/landing-page/type-furniture/new-funiture/services/new-funiture-service.service';
 
 @Component({
   selector: 'app-admin',
@@ -9,14 +8,11 @@ import { TypeFurnitureOfAdminComponent } from './type-furniture-admin/type-furni
   styleUrls: ['./admin.component.scss'],
   standalone: true,
   // imports: [CommonModule, RouterModule]
-  imports: [
-    HeaderAdminComponent,
-    FooterAdminComponent,
-    TypeFurnitureOfAdminComponent,
-  ],
+  imports: [AdminModule],
 })
 export class AdminComponent implements OnInit {
-  constructor() {}
+  isLoading = this.service.getLoading();
+  constructor(private service: NewFunitureService) {}
 
   ngOnInit() {}
 }
