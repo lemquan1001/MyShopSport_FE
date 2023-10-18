@@ -35,8 +35,11 @@
 
 <div class="container" id="main-container">
   <div class="row">
-    <div *ngFor="let product of products" class="col-md-6 col-xl-3">
-      <table class="table">
+    <div
+      *ngFor="let product of detailFunitureService.listDataCard | async"
+      class="col-md-6 col-xl-3"
+    >
+      <!-- <table class="table">
         <thead>
           <tr>
             <th scope="col">STT</th>
@@ -61,18 +64,74 @@
 
             <td>{{ product.price }}</td>
 
-            <td>{{ product.categoryId }}</td>
+            <td>{{ product.category }}</td>
 
             <td>{{ product.productCode }}</td>
 
             <td>{{ product.productName }}</td>
 
-            <td>{{ product.image }}</td>
+            <td><img src="{{ product.image }}" /></td>
 
-            <td>{{ product.satus }}</td>
+            <td>{{ product.status }}</td>
           </tr>
         </tbody>
-      </table>
+      </table> -->
+
+      <div class="card m-b-30">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            <i class="fa fa-envelope float-right"></i>{{ product.id }}
+          </li>
+        </ul>
+        <div class="card-body row">
+          <div class="col-6">
+            <a href="">
+              <img
+                src="{{ product.image }}"
+                alt=""
+                class="img-fluid rounded-circle w-60"
+              />
+            </a>
+          </div>
+          <div class="col-6 card-title align-self-center mb-0">
+            <p class="m-0">{{ product.productName }}</p>
+          </div>
+        </div>
+
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            <i class="fa fa-envelope float-right"></i>{{ product.description }}
+          </li>
+          <li class="list-group-item">
+            <i class="fa fa-phone float-right"></i> {{ product.price }}
+          </li>
+          <li class="list-group-item">
+            <i class="fa fa-envelope float-right"></i>{{ product.category.id }}
+          </li>
+          <li class="list-group-item">
+            <i class="fa fa-phone float-right"></i> {{ product.productCode }}
+          </li>
+          <li class="list-group-item">
+            <i class="fa fa-phone float-right"></i> {{ product.status }}
+          </li>
+        </ul>
+        <div class="card-body">
+          <div class="float-right btn-group btn-group-sm">
+            <a
+              class="btn btn-primary tooltips"
+              data-placement="top"
+              data-original-title="Edit"
+              ><i class="fa fa-pencil"></i>
+            </a>
+            <a
+              class="btn btn-secondary tooltips"
+              data-placement="top"
+              data-original-title="Delete"
+              ><i class="fa fa-times"></i
+            ></a>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
