@@ -11,10 +11,10 @@
   >
     <span class="navbar-toggler-icon"></span>
   </button>
-  <div class="collapse navbar-collapse" id="navbarColor02">
+  <div class="navbar-collapse" id="navbarColor02">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link"
+        <a class="nav-link" (click)="onOpenModal(null!, 'add')"
           >Add Employee <span class="sr-only">(current)</span></a
         >
       </li>
@@ -34,54 +34,159 @@
 </nav>
 
 <div class="container" id="main-container">
+  <!-- Add Product Modal -->
+  <div>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addProductModalLabel">Add Product</h5>
+      </div>
+      <div class="modal-body">
+        <form
+          (ngSubmit)="onAddProduct(addForm)"
+          #addForm="ngForm"
+          method="post"
+          action="/employee/uploadImg"
+          enctype="multipart/form-data"
+        >
+          <!-- <div class="form-group">
+            <label for="id">ID:</label>
+            <input
+              type="text"
+              ngModel
+              name="id"
+              class="form-control"
+              id="id"
+              placeholder="ID"
+              required
+            />
+          </div> -->
+          <div class="form-group">
+            <label for="image">IMAGE:</label>
+            <input
+              type="text"
+              ngModel
+              name="image"
+              class="form-control"
+              id="image"
+              placeholder="image"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="price">PRICE:</label>
+            <input
+              type="text"
+              ngModel
+              name="price"
+              class="form-control"
+              id="price"
+              placeholder="price"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="productCode">PRODUCT CODE:</label>
+            <input
+              type="text"
+              ngModel
+              name="productCode"
+              class="form-control"
+              id="productCode"
+              placeholder="productCode"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="productName">PRODUCT NAME:</label>
+            <input
+              type="text"
+              ngModel
+              name="productName"
+              class="form-control"
+              id="productName"
+              placeholder="productName"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="description">DESCRIPTION:</label>
+            <input
+              type="text"
+              ngModel
+              name="description"
+              class="form-control"
+              id="description"
+              placeholder="description"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="brand">BRAND:</label>
+            <input
+              type="text"
+              ngModel
+              name="brand"
+              class="form-control"
+              id="brand"
+              placeholder="brand"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="categoryId">CATEGORY ID:</label>
+            <input
+              type="text"
+              ngModel
+              name="category.id"
+              class="form-control"
+              id="category.id"
+              placeholder="categoryId"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="status">STATUS:</label>
+            <input
+              type="text"
+              ngModel
+              name="status"
+              class="form-control"
+              id="status"
+              placeholder="status"
+              required
+            />
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              id="add-product-form"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Clear
+            </button>
+            <button
+              [disabled]="addForm.invalid"
+              type="submit"
+              class="btn btn-primary"
+            >
+              Save changes
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- List Product -->
   <div class="row">
     <div
-      *ngFor="let product of detailFunitureService.listDataCard | async"
+      *ngFor="let product of detailFunitureService.listProduct | async"
       class="col-md-6 col-xl-3"
     >
-      <!-- <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">STT</th>
-            <th scope="col">Brand</th>
-            <th scope="col">Description</th>
-            <th scope="col">Price</th>
-            <th scope="col">Category</th>
-            <th scope="col">Product Code</th>
-            <th scope="col">Product Name</th>
-            <th scope="col">Image</th>
-            <th scope="col">Status</th>
-            <th scope="col">Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>{{ product.id }}</td>
-
-            <td>{{ product.brand }}</td>
-
-            <td>{{ product.description }}</td>
-
-            <td>{{ product.price }}</td>
-
-            <td>{{ product.category }}</td>
-
-            <td>{{ product.productCode }}</td>
-
-            <td>{{ product.productName }}</td>
-
-            <td><img src="{{ product.image }}" /></td>
-
-            <td>{{ product.status }}</td>
-          </tr>
-        </tbody>
-      </table> -->
-
-      <div class="card m-b-30">
+      <div class="card m-b-30" #addForm="">
         <ul class="list-group list-group-flush">
-          <li class="list-group-item">
-            <i class="fa fa-envelope float-right"></i>{{ product.id }}
-          </li>
+          <li class="list-group-item">ID:{{ product.id }}</li>
         </ul>
         <div class="card-body row">
           <div class="col-6">
@@ -99,25 +204,23 @@
         </div>
 
         <ul class="list-group list-group-flush">
+          <li class="list-group-item">MÔ TẢ: {{ product.description }}</li>
+          <li class="list-group-item">GIÁ: {{ product.price }}</li>
+
           <li class="list-group-item">
-            <i class="fa fa-envelope float-right"></i>{{ product.description }}
+            MÃ SẢN PHẨM:
+            {{ product.productCode }}
           </li>
           <li class="list-group-item">
-            <i class="fa fa-phone float-right"></i> {{ product.price }}
+            TRẠNG THÁI:
+            {{ product.status }}
           </li>
-          <li class="list-group-item">
-            <i class="fa fa-envelope float-right"></i>{{ product.category.id }}
-          </li>
-          <li class="list-group-item">
-            <i class="fa fa-phone float-right"></i> {{ product.productCode }}
-          </li>
-          <li class="list-group-item">
-            <i class="fa fa-phone float-right"></i> {{ product.status }}
-          </li>
+          <li class="list-group-item">ID LOẠI: {{ product.category.id }}</li>
         </ul>
         <div class="card-body">
           <div class="float-right btn-group btn-group-sm">
             <a
+              (click)="onOpenModal(product, 'edit')"
               class="btn btn-primary tooltips"
               data-placement="top"
               data-original-title="Edit"

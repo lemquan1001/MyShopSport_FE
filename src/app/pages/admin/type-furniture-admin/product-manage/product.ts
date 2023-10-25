@@ -1,11 +1,22 @@
 export interface Product {
   id: number;
-  brand: String;
-  description: String;
+  image: string | null;
   price: number;
-  categoryId: number;
-  productCode: String;
-  productName: String;
-  image: String;
-  satus: number;
+  productCode: string;
+  productName: string;
+  description: string;
+  brand: string;
+  category: {
+    id: number;
+    categoryCode: string;
+    categoryName: string;
+  };
+  //categoryId: number;
+  status: string;
+  //   isActive: number;
+  //   image_overlay: string | null;
+  //   createdDate: string | null;
+  //   updatedDate: string | null;
+  //   createdBy: string | null;
+  //   updatedBy: string | null;
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AdminModule } from './admin-module';
 import { NewFunitureService } from '../user/landing-page/type-furniture/new-funiture/services/new-funiture-service.service';
+import { ProductAdminService } from './type-furniture-admin/services/product-admin-service.service';
 
 @Component({
   selector: 'app-admin',
@@ -12,7 +13,10 @@ import { NewFunitureService } from '../user/landing-page/type-furniture/new-funi
 })
 export class AdminComponent implements OnInit {
   isLoading = this.service.getLoading();
-  constructor(private service: NewFunitureService) {}
+  constructor(
+    private service: NewFunitureService,
+    public detailFunitureService: ProductAdminService
+  ) {}
 
   ngOnInit() {}
 }
