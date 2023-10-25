@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TypeFurnitureOfAdminModule } from './type-furniture-admin-module';
 import { serviceManagerAdmin } from './data/data-row-1';
+import { ProductAdminService } from './services/product-admin-service.service';
 
 @Component({
   selector: 'app-type-furniture-admin',
@@ -11,7 +12,7 @@ import { serviceManagerAdmin } from './data/data-row-1';
 })
 export class TypeFurnitureOfAdminComponent implements OnInit {
   dataRow1 = serviceManagerAdmin;
-  constructor() {}
+  constructor(public detailFunitureService: ProductAdminService) {}
 
   ngOnInit() {}
 }
