@@ -35,20 +35,36 @@
 
 <div class="container" id="main-container">
   <!-- Add Product Modal -->
-  <div>
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="addProductModalLabel">Add Product</h5>
-      </div>
-      <div class="modal-body">
-        <form
-          (ngSubmit)="onAddProduct(addForm)"
-          #addForm="ngForm"
-          method="post"
-          action="/employee/uploadImg"
-          enctype="multipart/form-data"
-        >
-          <!-- <div class="form-group">
+  <div
+    class="modal fade"
+    id="addProductModal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="addProductModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addProductModalLabel">Add Product</h5>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form
+            (ngSubmit)="onAddProduct(addForm)"
+            #addForm="ngForm"
+            method="post"
+            action="/employee/uploadImg"
+            enctype="multipart/form-data"
+          >
+            <!-- <div class="form-group">
             <label for="id">ID:</label>
             <input
               type="text"
@@ -60,79 +76,79 @@
               required
             />
           </div> -->
-          <div class="form-group">
-            <label for="image">IMAGE:</label>
-            <input
-              type="text"
-              ngModel
-              name="image"
-              class="form-control"
-              id="image"
-              placeholder="image"
-              required
-            />
-          </div>
-          <div class="form-group">
-            <label for="price">PRICE:</label>
-            <input
-              type="text"
-              ngModel
-              name="price"
-              class="form-control"
-              id="price"
-              placeholder="price"
-              required
-            />
-          </div>
-          <div class="form-group">
-            <label for="productCode">PRODUCT CODE:</label>
-            <input
-              type="text"
-              ngModel
-              name="productCode"
-              class="form-control"
-              id="productCode"
-              placeholder="productCode"
-              required
-            />
-          </div>
-          <div class="form-group">
-            <label for="productName">PRODUCT NAME:</label>
-            <input
-              type="text"
-              ngModel
-              name="productName"
-              class="form-control"
-              id="productName"
-              placeholder="productName"
-              required
-            />
-          </div>
-          <div class="form-group">
-            <label for="description">DESCRIPTION:</label>
-            <input
-              type="text"
-              ngModel
-              name="description"
-              class="form-control"
-              id="description"
-              placeholder="description"
-              required
-            />
-          </div>
-          <div class="form-group">
-            <label for="brand">BRAND:</label>
-            <input
-              type="text"
-              ngModel
-              name="brand"
-              class="form-control"
-              id="brand"
-              placeholder="brand"
-              required
-            />
-          </div>
-          <!-- <div class="form-group">
+            <div class="form-group">
+              <label for="image">IMAGE:</label>
+              <input
+                type="text"
+                ngModel
+                name="image"
+                class="form-control"
+                id="image"
+                placeholder="image"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="price">PRICE:</label>
+              <input
+                type="text"
+                ngModel
+                name="price"
+                class="form-control"
+                id="price"
+                placeholder="price"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="productCode">PRODUCT CODE:</label>
+              <input
+                type="text"
+                ngModel
+                name="productCode"
+                class="form-control"
+                id="productCode"
+                placeholder="productCode"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="productName">PRODUCT NAME:</label>
+              <input
+                type="text"
+                ngModel
+                name="productName"
+                class="form-control"
+                id="productName"
+                placeholder="productName"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="description">DESCRIPTION:</label>
+              <input
+                type="text"
+                ngModel
+                name="description"
+                class="form-control"
+                id="description"
+                placeholder="description"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="brand">BRAND:</label>
+              <input
+                type="text"
+                ngModel
+                name="brand"
+                class="form-control"
+                id="brand"
+                placeholder="brand"
+                required
+              />
+            </div>
+            <!-- <div class="form-group">
             <label for="category">CATEGORY ID:</label>
             <input
               type="text"
@@ -144,49 +160,58 @@
               required
             />
           </div> -->
-          <div class="form-group">
-            <label for="category.id">CATEGORY ID:</label>
-            <input
-              type="text"
-              ngModel
-              name="categoryId"
-              class="form-control"
-              id="categoryId"
-              placeholder="Enter Category ID"
-              required
-            />
-          </div>
+            <div class="form-group">
+              <label for="category.id">CATEGORY ID:</label>
+              <input
+                type="text"
+                ngModel
+                name="categoryId"
+                class="form-control"
+                id="categoryId"
+                placeholder="Enter Category ID"
+                required
+              />
+            </div>
 
-          <div class="form-group">
-            <label for="status">STATUS:</label>
-            <input
-              type="text"
-              ngModel
-              name="status"
-              class="form-control"
-              id="status"
-              placeholder="status"
-              required
-            />
-          </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              id="add-product-form"
-              class="btn btn-secondary"
-              data-dismiss="modal"
-            >
-              Clear
-            </button>
-            <button
-              [disabled]="addForm.invalid"
-              type="submit"
-              class="btn btn-primary"
-            >
-              Save changes
-            </button>
-          </div>
-        </form>
+            <div class="form-group">
+              <label for="status">STATUS:</label>
+              <input
+                type="text"
+                ngModel
+                name="status"
+                class="form-control"
+                id="status"
+                placeholder="status"
+                required
+              />
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                id="add-product-form"
+                class="btn btn-secondary"
+                data-dismiss="modal"
+              >
+                Clear
+              </button>
+              <button
+                type="button"
+                id="add-product-form"
+                class="btn btn-danger"
+                data-dismiss="modal"
+              >
+                Close
+              </button>
+              <button
+                [disabled]="addForm.invalid"
+                type="submit"
+                class="btn btn-primary"
+              >
+                Save changes
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   </div>
