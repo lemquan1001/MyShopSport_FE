@@ -22,6 +22,7 @@ import { NgForm } from '@angular/forms';
 export class ProductManageComponent implements OnInit {
   public products: Product[];
   public editProduct: Product;
+  public deleteProduct: Product;
   constructor(
     private http: HttpClient,
 
@@ -68,16 +69,13 @@ export class ProductManageComponent implements OnInit {
 
   public onAddProduct(addForm: NgForm): void {
     const product: any = addForm.value; // Lấy dữ liệu từ form
-
     // Tạo một object mới để lưu trữ thông tin của category
     const categoryInfo = {
       id: product.categoryId, // Sử dụng categoryId từ form
       // Các thông tin khác của category nếu cần
     };
-
     // Gán thông tin của category vào product
     product.category = categoryInfo;
-
     // Gửi yêu cầu thêm product lên server
     this.detailFunitureService.addProduct(product).subscribe(
       (response: any) => {
@@ -92,6 +90,30 @@ export class ProductManageComponent implements OnInit {
     );
   }
 
+  public onUpdateProduct(product: Product): void {
+    this.detailFunitureService.updateProduct(product).subscribe(
+      (reponse: Product) => {
+        console.log(reponse);
+        this.getListProduct();
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
+  }
+
+  public onDeleteProduct(id: number): void {
+    this.detailFunitureService.deleteProduct(id).subscribe(
+      (reponse: void) => {
+        console.log(reponse);
+        this.getListProduct();
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
+  }
+
   public onOpenModal(product: Product, mode: string): void {
     const container = document.getElementById('main-container');
     const button = document.createElement('button');
@@ -100,16 +122,15 @@ export class ProductManageComponent implements OnInit {
     button.setAttribute('data-toggle', 'modal');
     if (mode === 'add') {
       button.setAttribute('data-target', '#addProductModal');
-      alert('hello');
     }
-    // if (mode === 'edit') {
-    //   this.editProduct = product;
-    //   button.setAttribute('data-target', '#updateProductModal');
-    // }
-    // if (mode === 'delete') {
-    //   this.deleteEmployee = product;
-    //   button.setAttribute('data-target', '#deleteProductModal');
-    // }
+    if (mode === 'edit') {
+      this.editProduct = product;
+      button.setAttribute('data-target', '#updateProductModal');
+    }
+    if (mode === 'delete') {
+      this.deleteProduct = product;
+      button.setAttribute('data-target', '#deleteProductModal');
+    }
     container?.appendChild(button);
     button.click();
   }
