@@ -19,7 +19,7 @@ import { NgForm } from '@angular/forms';
   imports: [ProductManageModule, RouterLink, NzStepsModule],
   providers: [DestroyService],
 })
-export class ProductManageComponent {
+export class ProductManageComponent implements OnInit {
   public products: Product[];
   public editProduct: Product;
   constructor(
@@ -51,17 +51,43 @@ export class ProductManageComponent {
       });
   }
 
+  // public onAddProduct(addForm: NgForm): void {
+  //   document.getElementById('add-product-form')?.click();
+  //   this.detailFunitureService.addProduct(addForm.value).subscribe(
+  //     (reponse: Product) => {
+  //       console.log(reponse);
+  //       this.getListProduct();
+  //       addForm.reset(); //clear form sau khi tạo
+  //     },
+  //     (error: HttpErrorResponse) => {
+  //       alert(error.message);
+  //       addForm.reset(); //clear form sau khi tạo
+  //     }
+  //   );
+  // }
+
   public onAddProduct(addForm: NgForm): void {
-    document.getElementById('add-product-form')?.click();
-    this.detailFunitureService.addProduct(addForm.value).subscribe(
-      (reponse: Product) => {
-        console.log(reponse);
+    const product: any = addForm.value; // Lấy dữ liệu từ form
+
+    // Tạo một object mới để lưu trữ thông tin của category
+    const categoryInfo = {
+      id: product.categoryId, // Sử dụng categoryId từ form
+      // Các thông tin khác của category nếu cần
+    };
+
+    // Gán thông tin của category vào product
+    product.category = categoryInfo;
+
+    // Gửi yêu cầu thêm product lên server
+    this.detailFunitureService.addProduct(product).subscribe(
+      (response: any) => {
+        console.log(response);
         this.getListProduct();
-        addForm.reset(); //clear form sau khi tạo
+        addForm.reset(); // Xóa form sau khi thêm
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
-        addForm.reset(); //clear form sau khi tạo
+        addForm.reset(); // Xóa form sau khi thêm
       }
     );
   }
