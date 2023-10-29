@@ -20,4 +20,17 @@ export class ProductAdminService {
       product
     );
   }
+
+  public updateProduct(product: Product): Observable<Product> {
+    return this.http.put<Product>(
+      `http://localhost:8080/api/productT/updateProductT`,
+      product
+    );
+  }
+
+  public deleteProduct(id: number): Observable<void> {
+    return this.http.delete<void>(
+      `http://localhost:8080/api/productT/deleteProductT/${id}`
+    );
+  }
 }
