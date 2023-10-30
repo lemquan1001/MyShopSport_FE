@@ -35,37 +35,19 @@ export class ProductManageComponent implements OnInit {
   }
 
   getListProduct() {
-    return this.http
-      .get<ResponseAPINoContent<Product[]>>(
-        'http://localhost:8080/api/productT/getAllProducts'
-      )
-      .subscribe((res) => {
-        {
-          if (res) {
-            if (this.detailFunitureService.isProductsByCategory.value) {
-              this.detailFunitureService.listProduct.value;
-            } else {
-              this.detailFunitureService.listProduct.next(res.data);
-            }
-          }
+    this.detailFunitureService.getListProduct().subscribe(
+      (data: Product[]) => {
+        this.products = data;
+        // Set giá trị cho editProduct nếu có sản phẩm đầu tiên
+        if (this.products && this.products.length > 0) {
+          this.editProduct = this.products[0]; // Đây chỉ là ví dụ, bạn có thể chọn sản phẩm khác để gán cho editProduct
         }
-      });
+      },
+      (error) => {
+        console.error('Error fetching products: ', error);
+      }
+    );
   }
-
-  // public onAddProduct(addForm: NgForm): void {
-  //   document.getElementById('add-product-form')?.click();
-  //   this.detailFunitureService.addProduct(addForm.value).subscribe(
-  //     (reponse: Product) => {
-  //       console.log(reponse);
-  //       this.getListProduct();
-  //       addForm.reset(); //clear form sau khi tạo
-  //     },
-  //     (error: HttpErrorResponse) => {
-  //       alert(error.message);
-  //       addForm.reset(); //clear form sau khi tạo
-  //     }
-  //   );
-  // }
 
   public onAddProduct(addForm: NgForm): void {
     const product: any = addForm.value; // Lấy dữ liệu từ form

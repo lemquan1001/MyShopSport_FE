@@ -303,7 +303,16 @@
           <form #editForm="ngForm">
             <div class="form-group">
               <label for="id">ID:</label>
-              <h6>{{ editProduct.id }}</h6>
+              <input
+                type="text"
+                ngModel="{{ editProduct.id }}"
+                name="id"
+                class="form-control"
+                id="id"
+                placeholder="ID"
+                required
+              />
+              <!-- <h6>{{ editProduct.id }}</h6> -->
             </div>
             <div class="form-group">
               <label for="image">IMAGE:</label>
@@ -427,7 +436,7 @@
   </div>
 
   <!-- Delete Modal -->
-  <!-- <div
+  <div
     class="modal fade"
     id="deleteProductModal"
     tabindex="-1"
@@ -451,7 +460,7 @@
         <div class="modal-body">
           <p>
             Are you sure you want to delete product
-            {{ deleteProduct.productName }}?
+            {{ deleteProduct?.productName }}
           </p>
           <div class="modal-footer">
             <button
@@ -472,5 +481,5 @@
         </div>
       </div>
     </div>
-  </div> -->
+  </div>
 </div>
