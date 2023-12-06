@@ -10,5 +10,5 @@ export const ProductManageModule = [
   ResizeColumnDirective,
   HttpClientModule,
   FormsModule,
-  ProductManageComponent,
+  // ProductManageComponent,
 ];
