@@ -16,6 +16,9 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 import { SelectSizeComponent } from './pages/user/landing-page/type-furniture/select-size/select-size.component';
 import { PrivacyPolicyComponent } from './pages/user/landing-page/type-furniture/privacy-policy/privacy-policy.component';
 import { IntroduceComponent } from './pages/user/landing-page/type-furniture/introduce/introduce.component';
+import { BillManageComponent } from './pages/admin/type-furniture-admin/bill-manage/bill-manage.component';
+import { CategoryManageComponent } from './pages/admin/type-furniture-admin/category-manage/category-manage.component';
+import { DetailProductManageComponent } from './pages/admin/type-furniture-admin/detail-product-manage/detail-product-manage.component';
 
 @Injectable({ providedIn: 'root' })
 export class TranslocoHttpLoader implements TranslocoLoader {
@@ -42,6 +45,8 @@ export class TranslocoHttpLoader implements TranslocoLoader {
     { provide: TRANSLOCO_LOADER, useClass: TranslocoHttpLoader },
   ],
   imports: [NzCollapseModule, NzIconModule],
-  declarations: [],
+  declarations: [
+
+  ],
 })
 export class TranslocoRootModule {}

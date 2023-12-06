@@ -2,10 +2,10 @@ export const serviceManagerAdmin = [
   {
     title: '',
     content: [
-      { key: 'gioi_thieu', label: 'PRODUCT', routerLink: '/admin/pmcquan' },
-      { key: 'huong_dan_chon_size', label: 'CATEGORY', routerLink: '/a' },
-      { key: 'huong_dan_mua_hang', label: 'DETAILS', routerLink: '/b' },
-      { key: 'huong_dan_thanh_toan', label: 'ORDER', routerLink: '/c' },
+      { key: 'quan_ly_san_pham', label: 'PRODUCT', routerLink: '/admin/product-manage' },
+      { key: 'quan_ly_danh_muc_san_pham', label: 'CATEGORY', routerLink: '/admin/categoty-manage' },
+      { key: 'quan_ly_chi_tiet_san_pham', label: 'PRODUCT DETAILS', routerLink: '/admin/productDetail-manage' },
+      { key: 'quan_ly_don_hang', label: 'ORDER', routerLink: '/admin/order-manage' },
     ],
   },
 ];
