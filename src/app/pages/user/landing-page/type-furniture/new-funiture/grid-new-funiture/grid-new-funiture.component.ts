@@ -105,7 +105,7 @@ export class GridNewFunitureComponent implements OnInit {
     }
   }
   getListProduct() {
-    return this.http.get<ResponseAPINoContent<CardItem[]>>('http://localhost:8080/api/productT/getAllProducts').subscribe((res)=>{{
+    return this.http.get<ResponseAPINoContent<CardItem[]>>('http://localhost:8080/api/productT/getAllProductsEnable').subscribe((res)=>{{
       if(res){
         if(this.detailFunitureService.isProductsByCategory.value){
           this.detailFunitureService.listDataCard.value;

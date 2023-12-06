@@ -89,6 +89,6 @@ export class NewFunitureService {
     return this.http.get<ResponseAPINoContent<CardItem[]>>(`${this.BASE_URL}/productT/getProductByName/${name}`)
   }
   getListProduct() {
-    return this.http.get<ResponseAPINoContent<CardItem[]>>('http://localhost:8080/api/productT/getAllProducts');
+    return this.http.get<ResponseAPINoContent<CardItem[]>>('http://localhost:8080/api/productT/getAllProductsEnable');
   }
 }
