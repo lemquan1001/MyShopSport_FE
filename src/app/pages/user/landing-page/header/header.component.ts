@@ -60,7 +60,7 @@ export class HeaderComponent implements OnInit {
     }
   }
   getListProduct() {
-    return this.http.get<ResponseAPINoContent<CardItem[]>>('http://localhost:8080/api/productT/getAllProducts').subscribe((res)=>{{
+    return this.http.get<ResponseAPINoContent<CardItem[]>>('http://localhost:8080/api/productT/getAllProductsEnable').subscribe((res)=>{{
       if(res){
         if(this.detailProduct.isProductsByCategory.value){
           this.detailProduct.listDataCard.value;
