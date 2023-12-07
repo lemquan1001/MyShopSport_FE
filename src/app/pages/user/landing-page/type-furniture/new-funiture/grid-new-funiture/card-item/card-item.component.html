@@ -1,23 +1,37 @@
+<button type="button" class="btn" (click)="sortAscPrice()">GIÁ TĂNG DẦN</button>
+<button type="button" class="btn" (click)="sortDescPrice()">GIÁ GIẢM DẦN</button>
+<button type="button" class="btn" (click)="sortAscProductName()">Name: A ->
+  Z</button>
+<button type="button" class="btn" (click)="sortDescProductName()">Name: Z ->
+  A</button>
+<div class="grid grid-cols-4 gap-3">
 
-  <div class="grid grid-cols-4 gap-3">
-    <ng-container *ngFor="let item of detailFunitureService.listDataCard | async">
-      <div class="card h-full" (click)="detailItem(item)">
-        <div class="card-img image-container">
-          <img [src]="item.image" alt="" srcset="" class="w-full"/>
-<!--          <div class="image-overlay">-->
-<!--            <img [src]="item.image" alt="" class="w-full">-->
-<!--          </div>-->
-        </div>
-        <div class="content">
-          <div class="title-card">{{ item.productName }}</div>
-          <div class="name-card">{{ item.description }}</div>
-          <div class="content-price title-card">
-            <span>
-              {{ item.price | currency : 'VND'}}
-            </span>
-          </div>
+  <ng-container *ngFor="let item of paginatedListDataCard">
+    <div class="card h-full" (click)="detailItem(item)">
+      <div class="card-img image-container">
+        <img [src]="item.image" alt="" srcset="" class="w-full" />
+        <!--          <div class="image-overlay">-->
+        <!--            <img [src]="item.image" alt="" class="w-full">-->
+        <!--          </div>-->
+      </div>
+      <div class="content">
+        <div class="title-card">{{ item.productName }}</div>
+        <div class="name-card">{{ item.description }}</div>
+        <div class="content-price title-card">
+          <span>
+            {{ item.price | currency : 'VND'}}
+          </span>
         </div>
       </div>
-    </ng-container>
-  </div>
+    </div>
+  </ng-container>
+</div>
 
+<div class="pagination">
+  <button type="button" class="btn" (click)="changePage(currentPage - 1)">Previous</button>
+  <ng-container *ngFor="let pageNumber of pageNumbers">
+    <button type="button" class="btn" [class.active]="pageNumber === currentPage" (click)="changePage(pageNumber)">{{
+      pageNumber }}</button>
+  </ng-container>
+  <button type="button" class="btn" (click)="changePage(currentPage + 1)">Next</button>
+</div>
