@@ -1,1 +1,45 @@
-<p>bill-manage works!</p>
+<div>
+    <div class="dropdown">
+        <!-- Bind the selectedOptionText to the button content -->
+        <button class="dropbtn">{{ selectedOptionText }}</button>
+        <div class="dropdown-content">
+            <a href="#" (click)="onDropdownSelection(0, 'CHỜ XÁC NHẬN')">CHỜ XÁC NHẬN</a>
+            <a href="#" (click)="onDropdownSelection(1, 'CHỜ LẤY HÀNG')">CHỜ LẤY HÀNG</a>
+            <a href="#" (click)="onDropdownSelection(2, 'ĐANG GIAO')">ĐANG GIAO</a>
+            <a href="#" (click)="onDropdownSelection(3, 'ĐÃ GIAO')">ĐÃ GIAO</a>
+        </div>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>AMOUNT</th>
+                <th>CUSTOMER</th>
+                <th>PHONE</th>
+                <th>EMAIL</th>
+                <th>ADDRESS</th>
+                <th>STATUS</th>
+                <th>NOTE</th>
+                <th>PAYMETHOD</th>
+                <th>CREATED DATE</th>
+                <th>ACTION</th>
+            </tr>
+        </thead>
+        <tbody *ngFor="let bill of detailBillService.listBill | async">
+            <tr>
+                <td>{{bill.id}}</td>
+                <td>{{bill.amount}}</td>
+                <td>{{bill.customer}}</td>
+                <td>{{bill.phone}}</td>
+                <td>{{bill.email}}</td>
+                <td>{{bill.andress}}</td>
+                <td>{{bill.status}}</td>
+                <td>{{bill.note}}</td>
+                <td>{{bill.payMethod}}</td>
+                <td>{{bill.createdDate}}</td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
