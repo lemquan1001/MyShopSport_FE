@@ -84,4 +84,8 @@ export class BillManageComponent {
       this.editBill = this.bills[0];
     }
   }
+
+  checkClick() {
+    alert('hello');
+  }
 }

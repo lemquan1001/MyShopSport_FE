@@ -3,10 +3,10 @@
         <!-- Bind the selectedOptionText to the button content -->
         <button class="dropbtn">{{ selectedOptionText }}</button>
         <div class="dropdown-content">
-            <a href="#" (click)="onDropdownSelection(0, 'CHỜ XÁC NHẬN')">CHỜ XÁC NHẬN</a>
-            <a href="#" (click)="onDropdownSelection(1, 'CHỜ LẤY HÀNG')">CHỜ LẤY HÀNG</a>
-            <a href="#" (click)="onDropdownSelection(2, 'ĐANG GIAO')">ĐANG GIAO</a>
-            <a href="#" (click)="onDropdownSelection(3, 'ĐÃ GIAO')">ĐÃ GIAO</a>
+            <a (click)="onDropdownSelection(0, 'CHỜ XÁC NHẬN')">CHỜ XÁC NHẬN</a>
+            <a (click)="onDropdownSelection(1, 'CHỜ LẤY HÀNG')">CHỜ LẤY HÀNG</a>
+            <a (click)="onDropdownSelection(2, 'ĐANG GIAO')">ĐANG GIAO</a>
+            <a (click)="onDropdownSelection(3, 'ĐÃ GIAO')">ĐÃ GIAO</a>
         </div>
     </div>
 
@@ -38,7 +38,12 @@
                 <td>{{bill.note}}</td>
                 <td>{{bill.payMethod}}</td>
                 <td>{{bill.createdDate}}</td>
-                <td></td>
+                <td>
+                    <span class="material material-icons btn btn-primary" (click)="checkClick()">check</span>
+                    <span class="material material-icons btn btn-success">
+                        visibility
+                    </span>
+                </td>
             </tr>
         </tbody>
     </table>
