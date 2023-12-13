@@ -5,6 +5,7 @@ import { SelectSizeComponent } from '../user/landing-page/type-furniture/select-
 import { BillManageComponent } from './type-furniture-admin/bill-manage/bill-manage.component';
 import { CategoryManageComponent } from './type-furniture-admin/category-manage/category-manage.component';
 import { DetailProductManageComponent } from './type-furniture-admin/detail-product-manage/detail-product-manage.component';
+import { ManageCustomerComponent } from './type-furniture-admin/manage-customer/manage-customer.component';
 export const route: Route[] = [
   {
     path: '',
@@ -25,6 +26,10 @@ export const route: Route[] = [
       {
         path: 'productDetail-manage',
         component: DetailProductManageComponent,
+      },
+      {
+        path: 'customer-manage',
+        component: ManageCustomerComponent,
       },
     ],
   },

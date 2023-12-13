@@ -45,9 +45,7 @@ export class TranslocoHttpLoader implements TranslocoLoader {
     },
     { provide: TRANSLOCO_LOADER, useClass: TranslocoHttpLoader },
   ],
-  imports: [NzCollapseModule, NzIconModule,NgxPaginationModule],
-  declarations: [
-
-  ],
+  imports: [NzCollapseModule, NzIconModule, NgxPaginationModule],
+  declarations: [],
 })
 export class TranslocoRootModule {}
