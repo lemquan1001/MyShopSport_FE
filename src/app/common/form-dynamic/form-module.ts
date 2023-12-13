@@ -7,7 +7,6 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 import { CommonModule } from '@angular/common';
 import { NzRadioModule } from 'ng-zorro-antd/radio';
 import { NzSelectModule } from 'ng-zorro-antd/select';
-import { NgxTrimDirectiveModule } from 'ngx-trim-directive';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { ShowErrorComponent } from '../show-error/show-error.component';
 export const FormModule = [
@@ -18,9 +17,8 @@ export const FormModule = [
   NzButtonModule,
   NzFormModule,
   ReactiveFormsModule,
-  NzSelectModule ,
-  NgxTrimDirectiveModule,
+  NzSelectModule,
   NzDatePickerModule,
   ShowErrorComponent,
-  StyleErrorDirective
-]
+  StyleErrorDirective,
+];

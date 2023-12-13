@@ -10,41 +10,137 @@
         </div>
     </div>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>AMOUNT</th>
-                <th>CUSTOMER</th>
-                <th>PHONE</th>
-                <th>EMAIL</th>
-                <th>ADDRESS</th>
-                <th>STATUS</th>
-                <th>NOTE</th>
-                <th>PAYMETHOD</th>
-                <!-- <th>CREATED DATE</th> -->
-                <th>ACTION</th>
-            </tr>
-        </thead>
-        <tbody *ngFor="let bill of detailBillService.listBill | async">
-            <tr>
-                <td>{{bill.id}}</td>
-                <td>{{bill.amount}}</td>
-                <td>{{bill.customer}}</td>
-                <td>{{bill.phone}}</td>
-                <td>{{bill.email}}</td>
-                <td>{{bill.andress}}</td>
-                <td>{{bill.status}}</td>
-                <td>{{bill.note}}</td>
-                <td>{{bill.payMethod}}</td>
-                <!-- <td>{{bill.createdDate}}</td> -->
-                <td>
-                    <span class="material material-icons btn btn-primary" (click)="checkClick()">check</span>
-                    <span class="material material-icons btn btn-warning">
-                        visibility
-                    </span>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+
+    <div class="container" id="main-container">
+        <!-- Get List -->
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>AMOUNT</th>
+                    <th>CUSTOMER</th>
+                    <th>PHONE</th>
+                    <th>EMAIL</th>
+                    <th>ADDRESS</th>
+                    <th>STATUS</th>
+                    <th>NOTE</th>
+                    <th>PAYMETHOD</th>
+                    <!-- <th>CREATED DATE</th> -->
+                    <th>ACTION</th>
+                </tr>
+            </thead>
+            <tbody *ngFor="let bill of detailBillService.listBill | async">
+                <tr>
+                    <td>{{bill.id}}</td>
+                    <td>{{bill.amount}}</td>
+                    <td>{{bill.customer}}</td>
+                    <td>{{bill.phone}}</td>
+                    <td>{{bill.email}}</td>
+                    <td>{{bill.andress}}</td>
+                    <td>{{bill.status}}</td>
+                    <td>{{bill.note}}</td>
+                    <td>{{bill.payMethod}}</td>
+                    <!-- <td>{{bill.createdDate}}</td> -->
+                    <td>
+                        <span class="material material-icons btn btn-primary"
+                            (click)="onOpenModal(bill, 'edit')">check</span>
+                        <span class="material material-icons btn btn-warning">
+                            visibility
+                        </span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+
+        <!-- Update Bill -->
+        <div class="modal fade" id="updateProductModal" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="updateProductModalLabel">Update Customer</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form #editForm="ngForm">
+                            <div class="disable">
+
+                                <div class="form-group">
+                                    <label for="amount">AMOUNT:</label>
+                                    <input type="text" ngModel="{{ editBill?.amount }}" name="amount"
+                                        class="form-control" id="amount" required />
+                                </div>
+                                <div class="form-group">
+                                    <label for="customer">CUSTOMER:</label>
+                                    <input type="text" ngModel="{{ editBill?.customer }}" name="customer"
+                                        class="form-control" id="customer" required />
+                                </div>
+                                <div class="form-group">
+                                    <label for="phone">PHONE:</label>
+                                    <input type="text" ngModel="{{ editBill?.phone }}" name="phone" class="form-control"
+                                        id="phone" required />
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">EMAIL:</label>
+                                    <input type="text" ngModel="{{ editBill?.email }}" name="email" class="form-control"
+                                        id="email" required />
+                                </div>
+                                <div class="form-group">
+                                    <label for="andress">ADDRESS:</label>
+                                    <input type="text" ngModel="{{ editBill?.andress }}" name="andress"
+                                        class="form-control" id="andress" required />
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="note">NOTE:</label>
+                                    <input type="text" ngModel="{{ editBill?.note }}" name="note" class="form-control"
+                                        id="note" required />
+                                </div>
+                                <div class="form-group">
+                                    <label for="payMethod">PAYMETHOD:</label>
+                                    <input type="text" ngModel="{{ editBill?.payMethod }}" name="payMethod"
+                                        class="form-control" id="payMethod" required />
+                                </div>
+                                <div class="form-group">
+                                    <label for="createdDate">CREATED DATE:</label>
+                                    <input type="text" ngModel="{{ editBill?.createdDate }}" name="createdDate"
+                                        class="form-control" id="createdDate" required />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="id">ID:</label>
+                                <input type="text" ngModel="{{ editBill?.id }}" name="id" class="form-control" id="id"
+                                    readonly required />
+                            </div>
+                            <div class="form-group">
+                                <label for="status">STATUS:</label>
+                                <!-- <input type="text" ngModel="{{ editBill?.status }}" name="status" class="form-control"
+                                    id="status" required /> -->
+                                <select ngModel="{{ editBill?.status }}" name="status" class="form-control" id="status">
+                                    <option disabled selected>Chọn một mục</option>
+                                    <option value="0">CHỜ XÁC NHẬN</option>
+                                    <option value="1">CHỜ LẤY HÀNG</option>
+                                    <option value="2">ĐANG GIAO</option>
+                                    <option value="3">ĐÃ GIAO</option>
+                                </select>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" id="add-product-form" class="btn btn-secondary"
+                                    data-dismiss="modal">
+                                    Clear
+                                </button>
+
+                                <button (click)="onUpdateBill(editForm.value)" data-dismiss="modal"
+                                    class="btn btn-primary">
+                                    Save changes
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
