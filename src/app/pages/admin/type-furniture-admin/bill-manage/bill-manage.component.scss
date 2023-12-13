@@ -46,3 +46,16 @@ th {
   .material:hover {
       cursor: pointer;
   }
+
+
+  .disable {
+    display: none;
+  }
+  .form-group {
+    width: 50%;
+    float: left;
+    padding: 0 5px;
+  }
+  
+  @import 'https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css';
+  @import 'https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css';

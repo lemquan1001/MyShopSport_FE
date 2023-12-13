@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable, map, tap } from 'rxjs';
+import { BehaviorSubject, Observable, catchError, map, tap } from 'rxjs';
 import { BillManage } from '../bill-manage/bill';
 import { ResponseAPINoContent } from 'src/app/common/types/response-api';
 import { Injectable } from '@angular/core';
@@ -78,6 +78,22 @@ export class BillAdminService {
           } else {
             this.listBill.next(data);
           }
+        })
+      );
+  }
+
+  public updateBill(bill: BillManage): Observable<BillManage> {
+    // return this.http.put<BillManage>(
+    //   `http://localhost:8080/api/bill/updateBill`,
+    //   bill
+    // );
+    console.log('Updating Bill:', bill); // Log để kiểm tra dữ liệu bạn đang gửi
+    return this.http
+      .put<BillManage>(`http://localhost:8080/api/bill/updateBill`, bill)
+      .pipe(
+        catchError((error) => {
+          console.error('Update failed:', error);
+          throw error;
         })
       );
   }
