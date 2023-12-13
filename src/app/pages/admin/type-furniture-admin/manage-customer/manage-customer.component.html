@@ -1,0 +1,190 @@
+<div>
+    <span class="material material-icons btn btn-primary" (click)="onOpenModal(null!, 'add')">group_add</span>
+
+
+    <div class="container" id="main-container">
+        <!-- Get List -->
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>USERNAME</th>
+                    <th>PASSWORD</th>
+                    <th>NAME</th>
+                    <th>PHONE</th>
+                    <th>EMAIL</th>
+                    <th>ADDRESS</th>
+                    <th>ACTION</th>
+                </tr>
+            </thead>
+            <tbody *ngFor="let customer of detailCustomerService.listCustomer | async">
+                <tr>
+                    <td>{{customer.id}}</td>
+                    <td>{{customer.user}}</td>
+                    <td>{{customer.pass}}</td>
+                    <td>{{customer.name}}</td>
+                    <td>{{customer.phoneNumber}}</td>
+                    <td>{{customer.email}}</td>
+                    <td>{{customer.address}}</td>
+                    <td>
+                        <span class="material material-icons btn btn-success"
+                            (click)="onOpenModal(customer, 'edit')">edit_note</span>
+                        <span class="material material-icons btn btn-danger" (click)="onOpenModal(customer, 'delete')">
+                            person_remove
+                        </span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+
+        <!-- Add Modal -->
+        <div class="modal fade" id="addProductModal" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addProductModalLabel">Add Customer</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form (ngSubmit)="onAddCustomer(addForm)" #addForm="ngForm" method="post">
+                            <div class="form-group">
+                                <label for="user">USERNAME:</label>
+                                <input type="text" ngModel name="user" class="form-control" id="user" required />
+                            </div>
+                            <div class=" form-group">
+                                <label for="pass">PASSWORD CODE:</label>
+                                <input type="text" ngModel name="pass" class="form-control" id="pass" required />
+                            </div>
+                            <div class=" form-group">
+                                <label for="name">NAME NAME:</label>
+                                <input type="text" ngModel name="name" class="form-control" id="name" required />
+                            </div>
+                            <div class=" form-group">
+                                <label for="phoneNumber">PHONE:</label>
+                                <input type="text" ngModel name="phoneNumber" class="form-control" id="phoneNumber"
+                                    required />
+                            </div>
+                            <div class=" form-group">
+                                <label for="email">EMAIL:</label>
+                                <input type="text" ngModel name="email" class="form-control" id="email" required />
+                            </div>
+                            <div class=" form-group">
+                                <label for="address">ADDRESS:</label>
+                                <input type="text" ngModel name="address" class="form-control" id="address" required />
+                            </div>
+
+
+                            <div class="modal-footer">
+                                <button class="btn btn-danger" id="add-customer-form" data-dismiss="modal">
+                                    Close
+                                </button>
+                                <button [disabled]="addForm.invalid" type="submit" class="btn btn-primary">
+                                    Save changes
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- Update Product -->
+        <div class="modal fade" id="updateProductModal" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="updateProductModalLabel">Update Customer</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form #editForm="ngForm">
+                            <div class="form-group">
+                                <label for="id">ID:</label>
+                                <input type="text" ngModel="{{ editCustomer?.id }}" name="id" class="form-control"
+                                    id="id" required />
+                            </div>
+                            <div class="form-group">
+                                <label for="user">USER:</label>
+                                <input type="text" ngModel="{{ editCustomer?.user }}" name="user" class="form-control"
+                                    id="user" required />
+                            </div>
+                            <div class="form-group">
+                                <label for="pass">PASSWORD:</label>
+                                <input type="text" ngModel="{{ editCustomer?.pass }}" name="pass" class="form-control"
+                                    id="pass" required />
+                            </div>
+                            <div class="form-group">
+                                <label for="name">USERNAME:</label>
+                                <input type="text" ngModel="{{ editCustomer?.name }}" name="name" class="form-control"
+                                    id="name" required />
+                            </div>
+                            <div class="form-group">
+                                <label for="phoneNumber">PHONE :</label>
+                                <input type="text" ngModel="{{ editCustomer?.phoneNumber }}" name="phoneNumber"
+                                    class="form-control" id="phoneNumber" required />
+                            </div>
+                            <div class="form-group">
+                                <label for="email">EMAIL:</label>
+                                <input type="text" ngModel="{{ editCustomer?.email }}" name="email" class="form-control"
+                                    id="email" required />
+                            </div>
+                            <div class="form-group">
+                                <label for="address">ADDRESS:</label>
+                                <input type="text" ngModel="{{ editCustomer?.address }}" name="address"
+                                    class="form-control" id="address" required />
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" id="add-product-form" class="btn btn-secondary"
+                                    data-dismiss="modal">
+                                    Clear
+                                </button>
+
+                                <button (click)="onUpdateCustomer(editForm.value)" data-dismiss="modal"
+                                    class="btn btn-primary">
+                                    Save changes
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Delete Modal -->
+        <div class="modal fade" id="deleteProductModal" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="deleteModelLabel">Delete Customer</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                            Are you sure you want to delete customer
+                            {{ deleteCustomer?.user }}
+                        </p>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                No
+                            </button>
+                            <button (click)="onDeleteCustomer(deleteCustomer.id)" class="btn btn-danger"
+                                data-dismiss="modal">
+                                Yes
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
