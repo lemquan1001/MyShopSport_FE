@@ -107,38 +107,38 @@
                         <form #editForm="ngForm">
                             <div class="form-group">
                                 <label for="id">ID:</label>
-                                <input type="text" ngModel="{{ editCustomer?.id }}" name="id" class="form-control"
-                                    id="id" required />
+                                <input type="text" ngModel="{{ editCustomer ? editCustomer.id : 'N/A' }}" name="id"
+                                    class="form-control" id="id" required />
                             </div>
                             <div class="form-group">
                                 <label for="user">USER:</label>
-                                <input type="text" ngModel="{{ editCustomer?.user }}" name="user" class="form-control"
-                                    id="user" required />
+                                <input type="text" ngModel="{{ editCustomer ? editCustomer.user : 'N/A' }}" name="user"
+                                    class="form-control" id="user" required />
                             </div>
                             <div class="form-group">
                                 <label for="pass">PASSWORD:</label>
-                                <input type="text" ngModel="{{ editCustomer?.pass }}" name="pass" class="form-control"
-                                    id="pass" required />
+                                <input type="text" ngModel="{{ editCustomer ? editCustomer.pass : 'N/A' }}" name="pass"
+                                    class="form-control" id="pass" required />
                             </div>
                             <div class="form-group">
                                 <label for="name">USERNAME:</label>
-                                <input type="text" ngModel="{{ editCustomer?.name }}" name="name" class="form-control"
-                                    id="name" required />
+                                <input type="text" ngModel="{{ editCustomer ? editCustomer.name : 'N/A' }}" name="name"
+                                    class="form-control" id="name" required />
                             </div>
                             <div class="form-group">
                                 <label for="phoneNumber">PHONE :</label>
-                                <input type="text" ngModel="{{ editCustomer?.phoneNumber }}" name="phoneNumber"
-                                    class="form-control" id="phoneNumber" required />
+                                <input type="text" ngModel="{{ editCustomer ? editCustomer.phoneNumber : 'N/A' }}"
+                                    name="phoneNumber" class="form-control" id="phoneNumber" required />
                             </div>
                             <div class="form-group">
                                 <label for="email">EMAIL:</label>
-                                <input type="text" ngModel="{{ editCustomer?.email }}" name="email" class="form-control"
-                                    id="email" required />
+                                <input type="text" ngModel="{{ editCustomer ? editCustomer.email : 'N/A' }}"
+                                    name="email" class="form-control" id="email" required />
                             </div>
                             <div class="form-group">
                                 <label for="address">ADDRESS:</label>
-                                <input type="text" ngModel="{{ editCustomer?.address }}" name="address"
-                                    class="form-control" id="address" required />
+                                <input type="text" ngModel="{{ editCustomer ? editCustomer.address : 'N/A' }}"
+                                    name="address" class="form-control" id="address" required />
                             </div>
                             <div class="modal-footer">
                                 <button type="button" id="add-product-form" class="btn btn-secondary"
@@ -170,7 +170,7 @@
                     <div class="modal-body">
                         <p>
                             Are you sure you want to delete customer
-                            {{ deleteCustomer?.user }}
+                            {{ deleteCustomer ? deleteCustomer.user : "N/A" }}
                         </p>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">

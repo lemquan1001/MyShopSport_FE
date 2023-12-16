@@ -247,7 +247,7 @@
         <div class="modal-body">
           <p>
             Are you sure you want to delete product
-            {{ deleteProduct?.productName }}
+            {{ deleteProduct ? deleteProduct.productName : "N/A" }}
           </p>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">

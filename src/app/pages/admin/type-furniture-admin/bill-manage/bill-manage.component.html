@@ -69,56 +69,57 @@
 
                                 <div class="form-group">
                                     <label for="amount">AMOUNT:</label>
-                                    <input type="text" ngModel="{{ editBill?.amount }}" name="amount"
+                                    <input type="text" ngModel="{{ editBill ? editBill.amount : 'N/A' }}" name="amount"
                                         class="form-control" id="amount" required />
                                 </div>
                                 <div class="form-group">
                                     <label for="customer">CUSTOMER:</label>
-                                    <input type="text" ngModel="{{ editBill?.customer }}" name="customer"
-                                        class="form-control" id="customer" required />
+                                    <input type="text" ngModel="{{ editBill ? editBill.customer : 'N/A' }}"
+                                        name="customer" class="form-control" id="customer" required />
                                 </div>
                                 <div class="form-group">
                                     <label for="phone">PHONE:</label>
-                                    <input type="text" ngModel="{{ editBill?.phone }}" name="phone" class="form-control"
-                                        id="phone" required />
+                                    <input type="text" ngModel="{{ editBill ? editBill.phone : 'N/A' }}" name="phone"
+                                        class="form-control" id="phone" required />
                                 </div>
                                 <div class="form-group">
                                     <label for="email">EMAIL:</label>
-                                    <input type="text" ngModel="{{ editBill?.email }}" name="email" class="form-control"
-                                        id="email" required />
+                                    <input type="text" ngModel="{{ editBill ? editBill.email : 'N/A' }}" name="email"
+                                        class="form-control" id="email" required />
                                 </div>
                                 <div class="form-group">
                                     <label for="andress">ADDRESS:</label>
-                                    <input type="text" ngModel="{{ editBill?.andress }}" name="andress"
-                                        class="form-control" id="andress" required />
+                                    <input type="text" ngModel="{{ editBill ? editBill.andress : 'N/A' }}"
+                                        name="andress" class="form-control" id="andress" required />
                                 </div>
 
                                 <div class="form-group">
                                     <label for="note">NOTE:</label>
-                                    <input type="text" ngModel="{{ editBill?.note }}" name="note" class="form-control"
-                                        id="note" required />
+                                    <input type="text" ngModel="{{ editBill ? editBill.note : 'N/A' }}" name="note"
+                                        class="form-control" id="note" required />
                                 </div>
                                 <div class="form-group">
                                     <label for="payMethod">PAYMETHOD:</label>
-                                    <input type="text" ngModel="{{ editBill?.payMethod }}" name="payMethod"
-                                        class="form-control" id="payMethod" required />
+                                    <input type="text" ngModel="{{ editBill ? editBill.payMethod : 'N/A' }}"
+                                        name="payMethod" class="form-control" id="payMethod" required />
                                 </div>
                                 <div class="form-group">
                                     <label for="createdDate">CREATED DATE:</label>
-                                    <input type="text" ngModel="{{ editBill?.createdDate }}" name="createdDate"
-                                        class="form-control" id="createdDate" required />
+                                    <input type="text" ngModel="{{ editBill ? editBill.createdDate : 'N/A' }}"
+                                        name="createdDate" class="form-control" id="createdDate" required />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="id">ID:</label>
-                                <input type="text" ngModel="{{ editBill?.id }}" name="id" class="form-control" id="id"
-                                    readonly required />
+                                <input type="text" ngModel="{{ editBill ? editBill.id : 'N/A' }}" name="id"
+                                    class="form-control" id="id" readonly required />
                             </div>
                             <div class="form-group">
                                 <label for="status">STATUS:</label>
                                 <!-- <input type="text" ngModel="{{ editBill?.status }}" name="status" class="form-control"
                                     id="status" required /> -->
-                                <select ngModel="{{ editBill?.status }}" name="status" class="form-control" id="status">
+                                <select ngModel="{{ editBill ? editBill.status : 'N/A' }}" name="status"
+                                    class="form-control" id="status">
                                     <option disabled selected>Chọn một mục</option>
                                     <option value="0">CHỜ XÁC NHẬN</option>
                                     <option value="1">CHỜ LẤY HÀNG</option>
