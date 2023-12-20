@@ -1,8 +1,23 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" style="color: white">Tài khoản khách hành</a>
+    <div class="navbar-collapse" id="navbarColor02">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" (click)="onOpenModal(null!, 'add')"><span
+                        class="material material-icons btn btn-primary">
+                        note_add
+                    </span>Thêm tài khoản <span class="sr-only">(current)</span></a>
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input type="search" ngModel name="key" id="searchName" class="form-control mr-sm-2" required />
+        </form>
+    </div>
+</nav>
 <div>
-    <span class="material material-icons btn btn-primary" (click)="onOpenModal(null!, 'add')">group_add</span>
-
-
     <div class="container" id="main-container">
+        <span class="material material-icons btn btn-primary" (click)="onOpenModal(null!, 'add')">group_add</span>
+
         <!-- Get List -->
         <table class="table">
             <thead>
