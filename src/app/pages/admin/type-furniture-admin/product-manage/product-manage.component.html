@@ -1,18 +1,19 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" style="color: white">Product Manager</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02"
+  <a class="navbar-brand" style="color: white">Quản lý sản phẩm</a>
+  <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02"
     aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
-  </button>
+  </button> -->
   <div class="navbar-collapse" id="navbarColor02">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" (click)="onOpenModal(null!, 'add')">Add Employee <span class="sr-only">(current)</span></a>
+        <a class="nav-link" (click)="onOpenModal(null!, 'add')"><span class="material material-icons btn btn-primary">
+            note_add
+          </span>Thêm sản phẩm <span class="sr-only">(current)</span></a>
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
-      <input type="search" ngModel name="key" id="searchName" class="form-control mr-sm-2"
-        placeholder="Search employees..." required />
+      <input type="search" ngModel name="key" id="searchName" class="form-control mr-sm-2" required />
     </form>
   </div>
 </nav>
@@ -28,7 +29,7 @@
         <div class="card-body row">
           <div class="col-6">
             <a href="">
-              <img src="{{ product.image }}" alt="" class="img-fluid rounded-circle w-60" />
+              <img src="{{ product.image }}" class="img-fluid rounded-circle w-60" />
             </a>
           </div>
           <div class="col-6 card-title align-self-center mb-0">
@@ -52,14 +53,18 @@
         </ul>
         <div class="card-body">
           <div class="float-right btn-group btn-group-sm">
-            <a (click)="onOpenModal(product, 'edit')" class="btn btn-primary tooltips" data-placement="top"
+            <!-- <a (click)="onOpenModal(product, 'edit')" class="btn btn-primary tooltips" data-placement="top"
               data-original-title="Edit"><i class="fa fa-pencil"></i>
             </a>
-            <span class="material material-icons btn btn-primary">
+
+            <a (click)="onOpenModal(product, 'delete')" class="btn btn-secondary tooltips" data-placement="top"
+              data-original-title="Delete"><i class="fa fa-times"></i></a> -->
+            <span (click)="onOpenModal(product, 'edit')" class="material material-icons btn btn-primary">
               edit
             </span>
-            <a (click)="onOpenModal(product, 'delete')" class="btn btn-secondary tooltips" data-placement="top"
-              data-original-title="Delete"><i class="fa fa-times"></i></a>
+            <span (click)="onOpenModal(product, 'delete')" class="material material-icons btn btn-danger">
+              delete_forever
+            </span>
           </div>
         </div>
       </div>
@@ -94,52 +99,54 @@
           </div> -->
             <div class="form-group">
               <label for="image">IMAGE:</label>
-              <input type="text" ngModel name="image" class="form-control" id="image" placeholder="image" required />
+              <input type="text" ngModel name="image" class="form-control" id="image" required />
             </div>
             <div class="form-group">
               <label for="price">PRICE:</label>
-              <input type="text" ngModel name="price" class="form-control" id="price" placeholder="price" required />
+              <input type="text" ngModel name="price" class="form-control" id="price" required />
             </div>
             <div class="form-group">
               <label for="productCode">PRODUCT CODE:</label>
-              <input type="text" ngModel name="productCode" class="form-control" id="productCode"
-                placeholder="productCode" required />
+              <input type="text" ngModel name="productCode" class="form-control" id="productCode" required />
             </div>
             <div class="form-group">
               <label for="productName">PRODUCT NAME:</label>
-              <input type="text" ngModel name="productName" class="form-control" id="productName"
-                placeholder="productName" required />
+              <input type="text" ngModel name="productName" class="form-control" id="productName" required />
             </div>
             <div class="form-group">
               <label for="description">DESCRIPTION:</label>
-              <input type="text" ngModel name="description" class="form-control" id="description"
-                placeholder="description" required />
+              <input type="text" ngModel name="description" class="form-control" id="description" required />
             </div>
             <div class="form-group">
               <label for="brand">BRAND:</label>
-              <input type="text" ngModel name="brand" class="form-control" id="brand" placeholder="brand" required />
+              <input type="text" ngModel name="brand" class="form-control" id="brand" p required />
             </div>
-            <!-- <div class="form-group">
-            <label for="category">CATEGORY ID:</label>
-            <input
-              type="text"
-              ngModel
-              name="category.id"
-              class="form-control"
-              id="category.id"
-              placeholder="Enter Category ID"
-              required
-            />
-          </div> -->
             <div class="form-group">
               <label for="category.id">CATEGORY ID:</label>
-              <input type="text" ngModel name="categoryId" class="form-control" id="categoryId"
-                placeholder="Enter Category ID" required />
+              <select ngModel name="categoryId" class="form-control" id="categoryId" required>
+                <option disabled selected>Chọn một mục</option>
+                <option value="1">Áo đá bóng </option>
+                <option value="3">Giày đá bóng </option>
+                <option value="4">Áo thể thao</option>
+                <option value="5">Giày thể thao</option>
+                <option value="6">Phụ kiện thể thao</option>
+                <option value="7">Áo ĐTQG</option>
+
+                <option value="8">Khoác ĐTQG</option>
+                <option value="9">Bóng chuyền ba lỗ</option>
+                <option value="10">Bóng chuyền cọc tay</option>
+                <option value="11">Bóng rổ</option>
+                <option value="12">Thể thao trẻ em</option>
+              </select>
             </div>
 
             <div class="form-group">
               <label for="status">STATUS:</label>
-              <input type="text" ngModel name="status" class="form-control" id="status" placeholder="status" required />
+              <select ngModel name="status" class="form-control" id="status" required>
+                <option disabled selected>Chọn một mục</option>
+                <option value="0">ẨN</option>
+                <option value="1">HIỆN</option>
+              </select>
             </div>
             <div class="modal-footer">
               <button type="button" id="add-product-form" class="btn btn-secondary" data-dismiss="modal">
@@ -174,7 +181,7 @@
             <div class="form-group">
               <label for="id">ID:</label>
               <input type="text" ngModel="{{ editProduct.id }}" name="id" class="form-control" id="id" placeholder="ID"
-                required />
+                readonly required />
               <!-- <h6>{{ editProduct.id }}</h6> -->
             </div>
             <div class="form-group">
@@ -211,12 +218,20 @@
               <label for="category.id">CATEGORY ID:</label>
               <input type="text" ngModel="{{ editProduct.category.id }}" name="categoryId" class="form-control"
                 id="categoryId" placeholder="Enter Category ID" required />
+
             </div>
+
+
+
+
 
             <div class="form-group">
               <label for="status">STATUS:</label>
-              <input type="text" ngModel="{{ editProduct.status }}" name="status" class="form-control" id="status"
-                placeholder="status" required />
+              <select ngModel="{{ editProduct.status }}" name="status" class="form-control" id="status">
+                <option disabled selected>Chọn một mục</option>
+                <option value="0">ẨN</option>
+                <option value="1">HIỆN</option>
+              </select>
             </div>
             <div class="modal-footer">
               <button type="button" id="add-product-form" class="btn btn-secondary" data-dismiss="modal">

@@ -23,7 +23,7 @@ export class BillManageComponent {
   public editBill: BillManage;
   public deleteBill: BillManage;
 
-  public selectedOptionText: string = 'Dropdown'; // Default text for the button
+  public selectedOptionText: string = '--CHỌN--'; // Default text for the button
   constructor(public detailBillService: BillAdminService) {}
 
   ngOnInit(): void {

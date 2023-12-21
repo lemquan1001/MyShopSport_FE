@@ -2,6 +2,15 @@
   cursor: col-resize;
   padding: 0 5px;
 }
+
+.nav-link:hover {
+  background-color: #007bff;
+  border-radius: 10px;
+}
+
+.material{
+  margin-right: 10px;
+}
 // th::after{
 //   content: "";
 
@@ -21,3 +30,4 @@ tr{
 
 @import 'https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css';
 @import 'https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css';
+
