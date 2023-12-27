@@ -3,6 +3,11 @@ export const serviceManagerAdmin = [
     title: '',
     content: [
       {
+        key: 'trang_chu',
+        label: 'Home',
+        routerLink: '/admin',
+      },
+      {
         key: 'quan_ly_san_pham',
         label: 'PRODUCT',
         routerLink: '/admin/product-manage',

@@ -6,6 +6,9 @@ import { BillManageComponent } from './type-furniture-admin/bill-manage/bill-man
 import { CategoryManageComponent } from './type-furniture-admin/category-manage/category-manage.component';
 import { DetailProductManageComponent } from './type-furniture-admin/detail-product-manage/detail-product-manage.component';
 import { ManageCustomerComponent } from './type-furniture-admin/manage-customer/manage-customer.component';
+import { LoginAdminComponent } from './auth/login-admin/login-admin.component';
+import { SignupAdminComponent } from './auth/signup-admin/signup-admin.component';
+
 export const route: Route[] = [
   {
     path: '',
@@ -30,6 +33,14 @@ export const route: Route[] = [
       {
         path: 'customer-manage',
         component: ManageCustomerComponent,
+      },
+      {
+        path: 'login',
+        component: LoginAdminComponent,
+      },
+      {
+        path: 'signup',
+        component: SignupAdminComponent,
       },
     ],
   },
