@@ -12,4 +12,9 @@ export const APP_ROUTES: Routes = [
     loadChildren: () =>
       import('./pages/admin/admin-routing').then((m) => m.route),
   },
+  {
+    path: 'admin2',
+    loadChildren: () =>
+      import('./pages/auth2/admin-routing').then((m) => m.route2),
+  },
 ];
