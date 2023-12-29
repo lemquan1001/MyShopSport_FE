@@ -2,30 +2,29 @@ import { Component, OnInit } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { NzStepsModule } from 'ng-zorro-antd/steps';
 import { DestroyService } from 'src/app/common/service/destroy.service';
-import { LoginAdminModule } from './login-admin-module';
+import { AdminModule } from './admin-module';
+import { NewFunitureService } from '../user/landing-page/type-furniture/new-funiture/services/new-funiture-service.service';
+import { BehaviorSubject } from 'rxjs';
 import {
   FormBuilder,
   FormControl,
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { LoginAdminForm } from './types/login-admin';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
-import { AuthAdminService } from '../service/auth-admin.service';
-import { LoginAdminForm } from './types/login-admin';
-import { ResponseAPINoContent } from 'src/app/common/types/response-api';
-import Swal from 'sweetalert2';
-import { BehaviorSubject } from 'rxjs';
+import { AuthAdminService } from './auth-admin.service';
 
 @Component({
-  selector: 'app-login-admin',
-  templateUrl: './login-admin.component.html',
-  styleUrls: ['./login-admin.component.scss'],
+  selector: 'app-auth2',
+  templateUrl: './auth2.component.html',
+  styleUrls: ['./auth2.component.scss'],
   standalone: true,
-  imports: [LoginAdminModule, RouterLink, NzStepsModule],
+  imports: [AdminModule, RouterLink, NzStepsModule],
   providers: [DestroyService],
 })
-export class LoginAdminComponent implements OnInit {
+export class Auth2Component implements OnInit {
   // Sử dụng BehaviorSubject để theo dõi trạng thái đăng nhập
   private loggedInSubject = new BehaviorSubject<boolean>(false);
 
@@ -40,7 +39,9 @@ export class LoginAdminComponent implements OnInit {
   // init form in constructor
   loginForm!: FormGroup<LoginAdminForm>;
   isViewOrder: boolean = false;
+  isLoading = this.service.getLoading();
   constructor(
+    private service: NewFunitureService,
     private fb: FormBuilder,
     private router: Router,
     private http: HttpClient,
@@ -60,7 +61,7 @@ export class LoginAdminComponent implements OnInit {
   }
 
   register() {
-    this.router.navigate(['/admin/signup']);
+    this.router.navigate(['/admin2/register']);
   }
 
   loginnn() {
@@ -79,7 +80,7 @@ export class LoginAdminComponent implements OnInit {
             'Thông báo',
             'Nhân viên đã đăng nhập thành công'
           );
-          this.router.navigate(['/admin/product-manage']);
+          this.router.navigate(['/admin']);
           // this.loggedInSubject.next(true);
           this.newFunitureService.isLogin.next(true);
 
@@ -102,16 +103,5 @@ export class LoginAdminComponent implements OnInit {
         console.error(error);
       }
     );
-  }
-
-  getAccountByAdmin(user: string) {
-    return this.http
-      .get<ResponseAPINoContent<any>>(
-        `http://localhost:8080/getAccountByAdmin/${user}`
-      )
-      .subscribe((res) => {
-        this.newFunitureService.userName.next(res.data.username);
-        this.newFunitureService.email.next(res.data.login);
-      });
   }
 }

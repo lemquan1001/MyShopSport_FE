@@ -1,0 +1,59 @@
+<ng-container *ngIf="(!newFunitureService.isLogin.value); else loginSuccess">
+    <form *ngIf="!forgotPassword; else forgotPasswordForm" class="w-2/5 m-auto mt-10" nz-form nzNoColon
+        nzLayout="vertical" [formGroup]="loginForm">
+        <div class="text-center">
+            <h2 class="text-2xl font-sans">Đăng nhập</h2>
+            <p class="mt-2 name-card">Bạn chưa có tài khoản?</p>
+            <p class="link font-semibold sub-item font-25" (click)="register()">ĐĂNG KÝ</p>
+        </div>
+        <nz-form-item>
+            <nz-form-label class="font-bold"> TÊN ĐĂNG NHẬP</nz-form-label>
+            <nz-form-control>
+                <input type="text" nz-input formControlName="login" placeholder="email" [(ngModel)]="login" />
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-label class="font-bold"> MẬT KHẨU</nz-form-label>
+            <nz-form-control>
+                <nz-input-group [nzSuffix]="eye">
+                    <input nz-input [type]="showPassword ? 'text' : 'password'" pb-7 id=" nzSearch" name=" nzSearch"
+                        placeholder="Password" formControlName="password" [(ngModel)]="password" />
+                </nz-input-group>
+                <ng-template #eye>
+                    <span nz-icon [nzType]="showPassword ? 'eye-invisible' : 'eye'" nzTheme="outline"
+                        class="cursor-pointer" (click)="showPassword = !showPassword"></span>
+                </ng-template>
+            </nz-form-control>
+        </nz-form-item>
+        <div>
+            <button class="btn-submit p-2" (click)="loginnn()">{{ "Đăng nhập" | uppercase }}</button>
+        </div>
+
+
+    </form>
+    <ng-template #forgotPasswordForm>
+        <div class="text-center">
+            <h2 class="text-2xl font-sans">Đặt lại mật khẩu</h2>
+            <p class="mt-2 name-card mb-3">
+                Vui lòng nhập địa chỉ email của bạn dưới đây. Bạn sẽ nhận được một <br />liên kết đến
+                Đặt lại mật khẩu của bạn.
+            </p>
+        </div>
+        <div class="w-2/5 m-auto">
+            <label for="login">EMAIL</label>
+            <input id="login" name="login" type="text" nz-input [formControl]="emailForgot" />
+            <div class="text-center">
+                <button class="btn-submit mt-4 p-2">{{ "Gửi yêu cầu" | uppercase }}</button>
+                <span class="link mt-3 block" (click)="forgotPassword = false">
+                    HUỶ BỎ</span>
+            </div>
+        </div>
+    </ng-template>
+</ng-container>
+<ng-template #loginSuccess>
+
+
+    <ng-template #noShow>
+        <div class="custom-alert-login mt-4 text-center">Hãy kiểm tra đơn hàng!</div>
+    </ng-template>
+</ng-template>
