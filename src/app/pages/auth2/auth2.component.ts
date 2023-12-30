@@ -15,6 +15,9 @@ import { LoginAdminForm } from './types/login-admin';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { AuthAdminService } from './auth-admin.service';
+import { MatDialog } from '@angular/material/dialog';
+import { SignupAdmin2Component } from './signup-admin/signup-admin.component';
+import { SignupAdminComponent } from '../admin/auth/signup-admin/signup-admin.component';
 
 @Component({
   selector: 'app-auth2',
@@ -46,7 +49,8 @@ export class Auth2Component implements OnInit {
     private router: Router,
     private http: HttpClient,
     private notification: NzNotificationService,
-    public newFunitureService: AuthAdminService
+    public newFunitureService: AuthAdminService,
+    private dialog: MatDialog
   ) {
     this.loadForm();
   }
@@ -101,6 +105,23 @@ export class Auth2Component implements OnInit {
       (error) => {
         // Handle login error
         console.error(error);
+      }
+    );
+  }
+
+  openPasswordRecoveryModal() {
+    const dialogRef = this.dialog.open(SignupAdmin2Component, {
+      width: '400px', // You can adjust the width and other options
+    });
+
+    dialogRef.afterClosed().subscribe(
+      (result) => {
+        // Handle the result when the modal is closed
+        console.log('Modal closed with result:', result);
+      },
+      (reason) => {
+        // Handle the reason when the modal is dismissed
+        console.log('Modal dismissed with reason:', reason);
       }
     );
   }

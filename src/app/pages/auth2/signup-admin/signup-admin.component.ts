@@ -58,7 +58,7 @@ export class SignupAdmin2Component implements OnInit {
     this.http.post<ResponseAPINoContent<any>>(url, body, { headers }).subscribe(
       (response) => {
         console.log(response.data);
-        this.router.navigate(['/admin2/login']);
+        this.router.navigate(['/admin2']);
         this.notification.success('Thông báo', 'Đăng ký tài khoản thành công!');
         this.newFunitureService.email.next(response.data.email);
       },

@@ -4,7 +4,11 @@
         <div class="text-center">
             <h2 class="text-2xl font-sans">Đăng nhập</h2>
             <p class="mt-2 name-card">Bạn chưa có tài khoản?</p>
-            <p class="link font-semibold sub-item font-25" (click)="register()">ĐĂNG KÝ</p>
+            <p class="link font-semibold sub-item font-25" (click)="openPasswordRecoveryModal()">ĐĂNG KÝ</p>
+            <p class="link font-semibold sub-item font-25">
+                {{ "quyên mật khẩu" | uppercase }}
+            </p>
+
         </div>
         <nz-form-item>
             <nz-form-label class="font-bold"> TÊN ĐĂNG NHẬP</nz-form-label>
