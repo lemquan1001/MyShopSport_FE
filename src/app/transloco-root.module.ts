@@ -20,7 +20,7 @@ import { BillManageComponent } from './pages/admin/type-furniture-admin/bill-man
 import { CategoryManageComponent } from './pages/admin/type-furniture-admin/category-manage/category-manage.component';
 import { DetailProductManageComponent } from './pages/admin/type-furniture-admin/detail-product-manage/detail-product-manage.component';
 import { NgxPaginationModule } from 'ngx-pagination';
-
+import { MatDialogModule } from '@angular/material/dialog';
 @Injectable({ providedIn: 'root' })
 export class TranslocoHttpLoader implements TranslocoLoader {
   constructor(private http: HttpClient) {}
@@ -45,7 +45,12 @@ export class TranslocoHttpLoader implements TranslocoLoader {
     },
     { provide: TRANSLOCO_LOADER, useClass: TranslocoHttpLoader },
   ],
-  imports: [NzCollapseModule, NzIconModule, NgxPaginationModule],
+  imports: [
+    NzCollapseModule,
+    NzIconModule,
+    NgxPaginationModule,
+    MatDialogModule,
+  ],
   declarations: [],
 })
 export class TranslocoRootModule {}
