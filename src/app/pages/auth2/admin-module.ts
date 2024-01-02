@@ -13,6 +13,7 @@ import { NzNotificationModule } from 'ng-zorro-antd/notification';
 import { ResizeColumnDirective } from 'src/app/common/directives/resize-column.directive';
 import { HttpClientModule } from '@angular/common/http';
 import { SignupAdmin2Component } from './signup-admin/signup-admin.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 export const AdminModule = [
   RouterModule,
@@ -31,4 +32,5 @@ export const AdminModule = [
   ResizeColumnDirective,
   HttpClientModule,
   SignupAdmin2Component,
+  ForgotPasswordComponent,
 ];

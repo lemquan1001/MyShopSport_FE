@@ -31,8 +31,15 @@ export class AuthAdminService {
   email = new BehaviorSubject<string>('');
   isLoading$ = new BehaviorSubject(false);
 
+  private apiUrl = 'http://localhost:8080/forgot-password';
+
   constructor(private http: HttpClient) {}
   getLoading() {
     return this.isLoading$.asObservable();
+  }
+
+  sendResetPasswordRequest(email: string): Observable<any> {
+    const data = { login: email };
+    return this.http.post(this.apiUrl, data);
   }
 }
