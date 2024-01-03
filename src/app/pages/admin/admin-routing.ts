@@ -8,11 +8,14 @@ import { DetailProductManageComponent } from './type-furniture-admin/detail-prod
 import { ManageCustomerComponent } from './type-furniture-admin/manage-customer/manage-customer.component';
 import { LoginAdminComponent } from './auth/login-admin/login-admin.component';
 import { SignupAdminComponent } from './auth/signup-admin/signup-admin.component';
+import { AuthGuard } from '../auth.guard';
+import { ChangePasswordComponent } from './auth/change-password/change-password.component';
 
 export const route: Route[] = [
   {
     path: '',
     component: AdminComponent,
+    canActivate: [AuthGuard],
     children: [
       {
         path: 'product-manage',
@@ -41,6 +44,10 @@ export const route: Route[] = [
       {
         path: 'signup',
         component: SignupAdminComponent,
+      },
+      {
+        path: 'changePass',
+        component: ChangePasswordComponent,
       },
     ],
   },

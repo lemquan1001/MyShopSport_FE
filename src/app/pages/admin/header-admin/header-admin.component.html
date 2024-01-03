@@ -30,12 +30,20 @@
           <span nz-icon nzType="user" nzTheme="outline" class="mr-2 " style="font-size: 27px"></span>
           {{ "Đăng nhập" | uppercase }}
         </ng-template>
+        <div class="sign-out" (click)="logout()" style="overflow-wrap: anywhere;">
+
+          {{ "Đăng xuất" | uppercase }}
+
+        </div>
+
       </div>
-      <div class="shopping-card ml-2">
+
+
+      <div class="shopping-card ml-2" (click)="openModalChangePass()">
         <nz-badge style="font-size: 27px">
-          <span nz-icon nzType="shopping-cart" nzTheme="outline" class="mr-2"></span>
+          <span nzTheme="outline" class="mr-2"></span>
         </nz-badge>
-        <span class="ml-2">GIỎ HÀNG</span>
+        <span class="ml-2">{{ "thay đổi mật khẩu" | uppercase }}</span>
       </div>
     </div>
   </div>
