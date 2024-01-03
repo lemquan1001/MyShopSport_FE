@@ -42,4 +42,13 @@ export class AuthAdminService {
     const data = { login: email };
     return this.http.post(this.apiUrl, data);
   }
+  isAuthenticated(): boolean {
+    // Kiểm tra xác thực người dùng
+    // Có thể thêm kiểm tra cho điều kiện enable = 1 ở đây
+    return this.isLogin.value;
+  }
+
+  logout(): void {
+    this.isLogin.next(false);
+  }
 }

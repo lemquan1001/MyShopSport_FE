@@ -144,4 +144,9 @@ export class Auth2Component implements OnInit {
       }
     );
   }
+
+  logout() {
+    // Call the logout method from AuthAdminService
+    this.newFunitureService.logout();
+  }
 }
