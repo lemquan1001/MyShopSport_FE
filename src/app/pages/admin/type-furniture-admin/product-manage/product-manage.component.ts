@@ -10,6 +10,8 @@ import { DetailProductServiceService } from 'src/app/pages/user/landing-page/typ
 import { ProductAdminService } from '../services/product-admin-service.service';
 import { Product } from './product';
 import { NgForm } from '@angular/forms';
+import { Category } from '../category-manage/category';
+import { Brand } from '../brand-manage/brand';
 
 @Component({
   selector: 'app-product-manage',
@@ -23,6 +25,12 @@ export class ProductManageComponent implements OnInit {
   public products: Product[];
   public editProduct: Product;
   public deleteProduct: Product;
+
+  public categories: Category[] = [];
+  public selectedCategoryId: number; // Variable to store the selected category ID
+
+  public brands: Brand[] = [];
+  public selectedBrandId: number;
   constructor(
     private http: HttpClient,
 
@@ -32,8 +40,33 @@ export class ProductManageComponent implements OnInit {
 
   ngOnInit(): void {
     this.getListProduct();
+    this.getCategories(); // Call the method to get categories
+    this.getBrands();
   }
 
+  getCategories() {
+    // Call the service method to get categories from the API
+    this.detailFunitureService.getCategories().subscribe(
+      (data: Category[]) => {
+        this.categories = data;
+      },
+      (error) => {
+        console.error('Error fetching categories: ', error);
+      }
+    );
+  }
+
+  getBrands() {
+    // Call the service method to get categories from the API
+    this.detailFunitureService.getBrands().subscribe(
+      (data: Brand[]) => {
+        this.brands = data;
+      },
+      (error) => {
+        console.error('Error fetching categories: ', error);
+      }
+    );
+  }
   getListProduct() {
     this.detailFunitureService.getListProduct().subscribe(
       (data: Product[]) => {
@@ -53,11 +86,19 @@ export class ProductManageComponent implements OnInit {
     const product: any = addForm.value; // Lấy dữ liệu từ form
     // Tạo một object mới để lưu trữ thông tin của category
     const categoryInfo = {
-      id: product.categoryId, // Sử dụng categoryId từ form
-      // Các thông tin khác của category nếu cần
+      id: this.selectedCategoryId,
+      // Add other category properties if needed
     };
-    // Gán thông tin của category vào product
+
+    const brandInfo = {
+      id: this.selectedBrandId,
+      // Add other brand properties if needed
+    };
+
+    // Assign category and brand information to the product object
     product.category = categoryInfo;
+    product.brand = brandInfo;
+
     // Gửi yêu cầu thêm product lên server
     this.detailFunitureService.addProduct(product).subscribe(
       (response: any) => {

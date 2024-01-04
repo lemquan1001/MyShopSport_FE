@@ -2,8 +2,10 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, map, tap } from 'rxjs';
 import { Product } from '../product-manage/product';
 import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ResponseAPINoContent } from 'src/app/common/types/response-api';
+import { Category } from '../category-manage/category';
+import { Brand } from '../brand-manage/brand';
 
 @Injectable({
   providedIn: 'root',
@@ -50,5 +52,21 @@ export class ProductAdminService {
     return this.http.delete<void>(
       `http://localhost:8080/api/productT/deleteProductT/${id}`
     );
+  }
+
+  public getCategories(): Observable<Category[]> {
+    return this.http
+      .get<ResponseAPINoContent<Category[]>>(
+        'http://localhost:8080/api/category/getAllCategory'
+      )
+      .pipe(map((res) => res.data));
+  }
+
+  public getBrands(): Observable<Brand[]> {
+    return this.http
+      .get<ResponseAPINoContent<Brand[]>>(
+        'http://localhost:8080/api/brand/getAllBrand'
+      )
+      .pipe(map((res) => res.data));
   }
 }
