@@ -89,15 +89,9 @@ export class Auth2Component implements OnInit {
           this.router.navigate(['/admin']);
           // this.loggedInSubject.next(true);
           this.newFunitureService.isLogin.next(true);
-
-          // Fetch additional user details if needed
-          // this.getAccountByAdmin(this.login);
-
-          // Redirect or perform other actions as needed
-          // ...
         } else {
           // Handle login failure
-          this.notification.error(
+          this.notification.warning(
             'Thông báo',
             'Sai tài khoản hoặc mật khẩu! Vui lòng kiểm tra lại!'
           );
@@ -107,6 +101,10 @@ export class Auth2Component implements OnInit {
       (error) => {
         // Handle login error
         console.error(error);
+        this.notification.error(
+          'Thông báo',
+          'Sai tài khoản hoặc mật khẩu! Vui lòng kiểm tra lại!'
+        );
       }
     );
   }

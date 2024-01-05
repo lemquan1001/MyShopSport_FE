@@ -5,6 +5,7 @@ import { DestroyService } from 'src/app/common/service/destroy.service';
 import { RoleManageModule } from './role-manage';
 import { MatDialog } from '@angular/material/dialog';
 import { ChangeRoleComponent } from './change-role/change-role.component';
+import { NzNotificationService } from 'ng-zorro-antd/notification';
 
 @Component({
   selector: 'app-role-manage',
@@ -21,7 +22,10 @@ export class RoleManageComponent implements OnInit {
   password: string = '';
   errorMessage: string = '';
 
-  constructor(private dialog: MatDialog) {}
+  constructor(
+    private dialog: MatDialog,
+    private notification: NzNotificationService
+  ) {}
   ngOnInit() {}
 
   openModalChangRole() {
@@ -55,11 +59,17 @@ export class RoleManageComponent implements OnInit {
     );
 
     if (validCredentials) {
-      alert('Đăng nhập thành công.');
+      // alert('Đăng nhập thành công.');
       this.openModalChangRole();
+      this.notification.success(
+        'Thông báo',
+        'Đã đăng nhập thành công vào hệ thống quản lý nhân viên'
+      );
+
       this.errorMessage = '';
     } else {
-      alert('Lỗi !!! Vui lòng đăng nhập lại.');
+      // alert('Lỗi !!! Vui lòng đăng nhập lại.');
+      this.notification.error('Thông báo Lỗi', 'Vui lòng đăng nhập lại.');
       this.errorMessage = 'Invalid credentials. Please try again.';
     }
   }

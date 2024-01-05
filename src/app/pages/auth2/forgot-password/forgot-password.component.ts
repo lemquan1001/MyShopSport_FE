@@ -26,12 +26,15 @@ export class ForgotPasswordComponent {
     this.forgotPasswordService.sendResetPasswordRequest(this.email).subscribe(
       (response) => {
         console.log('Response:', response);
-        this.notification.info('Thông báo', 'Đăng nhập thành công1!');
-        this.notification.error('Thông báo', 'Đăng nhập thành công2!');
+        // this.notification.info('Thông báo', 'Đăng nhập thành công1!');
+        // this.notification.error('Thông báo', 'Đăng nhập thành công2!');
       },
       (error) => {
         console.error('Error:', error);
-        this.notification.info('Thông báo', 'Đăng nhập thành công3!');
+        this.notification.success(
+          'Thông báo',
+          'Đã reset password của bạn, vui lòng check gmail.'
+        );
       }
     );
   }

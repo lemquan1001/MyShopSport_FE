@@ -103,7 +103,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form #editForm="ngForm">
+                        <form #editForm="ngForm" (ngSubmit)="onUpdateBrand(editForm)" novalidate>
                             <div class="form-group">
                                 <label for="id">ID:</label>
                                 <input type="text" ngModel="{{ editBrand ? editBrand.id : 'N/A' }}" name="id"
@@ -131,8 +131,7 @@
                                     Clear
                                 </button>
 
-                                <button (click)="onUpdateBrand(editForm.value)" data-dismiss="modal"
-                                    class="btn btn-primary">
+                                <button [disabled]="!editForm.valid" type="submit" class="btn btn-primary">
                                     Save changes
                                 </button>
                             </div>

@@ -69,4 +69,15 @@ export class ProductAdminService {
       )
       .pipe(map((res) => res.data));
   }
+
+  public searchProductByName(productName: string): Observable<Product[]> {
+    const url = `http://localhost:8080/api/productT/getProductByName/${productName}`;
+    return this.http.get<ResponseAPINoContent<Product[]>>(url).pipe(
+      map((res) => res.data),
+      tap((data) => {
+        // Update BehaviorSubject with the search results
+        this.listProduct.next(data);
+      })
+    );
+  }
 }

@@ -6,6 +6,7 @@ import { DestroyService } from 'src/app/common/service/destroy.service';
 import { ChangeRoleService } from './chang-role-service.service';
 import { Admin } from './admin';
 import { HttpErrorResponse } from '@angular/common/http';
+import { NzNotificationService } from 'ng-zorro-antd/notification';
 
 @Component({
   selector: 'app-change-role',
@@ -19,7 +20,10 @@ export class ChangeRoleComponent {
   public admins: Admin[] = [];
   public editAdmin: Admin;
   public deleteAdmin: Admin;
-  constructor(public changeRoleService: ChangeRoleService) {}
+  constructor(
+    public changeRoleService: ChangeRoleService,
+    private notification: NzNotificationService
+  ) {}
   ngOnInit(): void {
     this.getListAdmin();
   }
@@ -40,6 +44,10 @@ export class ChangeRoleComponent {
       (reponse: Admin) => {
         console.log(reponse);
         this.getListAdmin();
+        this.notification.success(
+          'Thông báo',
+          'Đã cập nhật quyền của nhân viên thành công'
+        );
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
@@ -79,10 +87,34 @@ export class ChangeRoleComponent {
       }
     }
     if (mode === 'delete') {
-      this.deleteAdmin = admin;
-      button.setAttribute('data-target', '#deleteProductModal');
+      // this.deleteAdmin = admin;
+      // button.setAttribute('data-target', '#deleteProductModal');
+      if (mode === 'delete') {
+        // Implementing the delete logic similar to your existing code
+        const confirmDelete = confirm(
+          `Are you sure you want to delete admin with ID ${admin.id}?`
+        );
+
+        if (confirmDelete) {
+          this.onDeleteAdmin(admin.id);
+        } else {
+          console.log('Delete operation canceled.');
+        }
+      }
     }
     container?.appendChild(button);
     button.click();
+  }
+
+  public onDeleteAdmin(id: number): void {
+    this.changeRoleService.deleteAdmin(id).subscribe(
+      (reponse: void) => {
+        console.log(reponse);
+        this.getListAdmin();
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
   }
 }

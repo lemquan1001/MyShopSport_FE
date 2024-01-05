@@ -39,9 +39,7 @@ export class ChangeRoleService {
     return this.http.put<Admin>(`http://localhost:8080/updateAdmin`, admin);
   }
 
-  // public deleteCustomer(id: number): Observable<void> {
-  //   return this.http.delete<void>(
-  //     `http://localhost:8080/api/account/deleteAccount/${id}`
-  //   );
-  // }
+  public deleteAdmin(id: number): Observable<void> {
+    return this.http.delete<void>(`http://localhost:8080/deleteAdmin/${id}`);
+  }
 }
