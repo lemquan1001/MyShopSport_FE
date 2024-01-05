@@ -21,15 +21,15 @@
   <div nz-col nzSpan="7">
     <div class="action font-medium" style="font-size: 18px">
       <div class="sign-in" (click)="login()" style="overflow-wrap: anywhere;">
-        <ng-container *ngIf="newFunitureService.isLogin | async ; else logged">
+        <ng-container *ngIf="newFunitureService.isLogin | async ">
           <span nz-icon nzType="user" nzTheme="outline"
             style="overflow-wrap: anywhere; font-size: 27px; margin-left: 20px"></span>
           {{ newFunitureService.userName.value}}
         </ng-container>
-        <ng-template #logged>
+        <!-- <ng-template #logged>
           <span nz-icon nzType="user" nzTheme="outline" class="mr-2 " style="font-size: 27px"></span>
           {{ "Đăng nhập" | uppercase }}
-        </ng-template>
+        </ng-template> -->
         <div class="sign-out" (click)="logout()" style="overflow-wrap: anywhere;">
 
           {{ "Đăng xuất" | uppercase }}

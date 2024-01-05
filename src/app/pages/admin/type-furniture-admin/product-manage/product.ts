@@ -8,6 +8,8 @@ export interface Product {
   brand: {
     id: number;
     brandName: string;
+    brandCode: string;
+    description: string;
   };
   category: {
     id: number;

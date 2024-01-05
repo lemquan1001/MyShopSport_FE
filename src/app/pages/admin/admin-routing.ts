@@ -10,12 +10,13 @@ import { LoginAdminComponent } from './auth/login-admin/login-admin.component';
 import { SignupAdminComponent } from './auth/signup-admin/signup-admin.component';
 import { AuthGuard } from '../auth.guard';
 import { ChangePasswordComponent } from './auth/change-password/change-password.component';
+import { BrandManageComponent } from './type-furniture-admin/brand-manage/brand-manage.component';
 
 export const route: Route[] = [
   {
     path: '',
     component: AdminComponent,
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     children: [
       {
         path: 'product-manage',
@@ -30,8 +31,8 @@ export const route: Route[] = [
         component: CategoryManageComponent,
       },
       {
-        path: 'productDetail-manage',
-        component: DetailProductManageComponent,
+        path: 'brand-manage',
+        component: BrandManageComponent,
       },
       {
         path: 'customer-manage',
