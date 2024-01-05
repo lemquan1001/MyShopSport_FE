@@ -56,11 +56,38 @@ export class BrandManageComponent {
     );
   }
 
-  public onUpdateBrand(customer: Brand): void {
-    this.detailBrandService.updateBrand(customer).subscribe(
-      (reponse: Brand) => {
-        console.log(reponse);
+  // public onUpdateBrand(customer: Brand): void {
+  //   this.detailBrandService.updateBrand(customer).subscribe(
+  //     (reponse: Brand) => {
+  //       console.log(reponse);
+  //       this.getListBrand();
+  //     },
+  //     (error: HttpErrorResponse) => {
+  //       alert(error.message);
+  //     }
+  //   );
+  // }
+
+  public onUpdateBrand(editForm: NgForm): void {
+    if (editForm.invalid) {
+      console.log('Invalid form. Please fill out all required fields.');
+      // Optionally, you can display a warning to the user
+      return;
+    }
+
+    const formData = editForm.value;
+    const updatedBrand: Brand = {
+      id: formData.id,
+      brandName: formData.brandName,
+      brandCode: formData.brandCode,
+      description: formData.description,
+    };
+
+    this.detailBrandService.updateBrand(updatedBrand).subscribe(
+      (response: Brand) => {
+        console.log(response);
         this.getListBrand();
+        editForm.reset(); // Optionally reset the form after a successful update
       },
       (error: HttpErrorResponse) => {
         alert(error.message);

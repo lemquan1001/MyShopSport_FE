@@ -31,6 +31,8 @@ export class ProductManageComponent implements OnInit {
 
   public brands: Brand[] = [];
   public selectedBrandId: number;
+
+  public searchProductName: string;
   constructor(
     private http: HttpClient,
 
@@ -156,5 +158,27 @@ export class ProductManageComponent implements OnInit {
     }
     container?.appendChild(button);
     button.click();
+  }
+
+  public onSearchProduct(): void {
+    if (this.searchProductName && this.searchProductName.trim() !== '') {
+      // Gọi phương thức tìm kiếm với tên sản phẩm
+      this.searchProductByName(this.searchProductName.trim());
+    } else {
+      // Nếu ô tìm kiếm trống, hiển thị toàn bộ danh sách sản phẩm
+      this.getListProduct();
+    }
+  }
+
+  private searchProductByName(productName: string): void {
+    // Gọi service để tìm kiếm sản phẩm theo tên
+    this.detailFunitureService.searchProductByName(productName).subscribe(
+      (data: Product[]) => {
+        this.products = data;
+      },
+      (error) => {
+        console.error('Error searching products: ', error);
+      }
+    );
   }
 }

@@ -12,13 +12,26 @@
           </span>Thêm sản phẩm <span class="sr-only">(current)</span></a>
       </li>
     </ul>
-    <form class="form-inline my-2 my-lg-0">
+    <!-- <form class="form-inline my-2 my-lg-0">
       <input type="search" ngModel name="key" id="searchName" class="form-control mr-sm-2" required />
+    </form> -->
+    <form class="form-inline my-2 my-lg-0">
+      <input type="search" [(ngModel)]="searchProductName" name="searchProductName" id="searchName"
+        class="form-control mr-sm-2" placeholder="Tìm kiếm theo tên sản phẩm" />
+      <button type="button" class="btn btn-primary" (click)="onSearchProduct()">Tìm kiếm</button>
     </form>
+
   </div>
 </nav>
 
 <div class="container" id="main-container">
+  <!-- List Product -->
+  <div class="row">
+    <div *ngFor="let product of products" class="col-md-6 col-xl-3">
+      <!-- ... (rest of your product card template) ... -->
+    </div>
+  </div>
+
   <!-- List Product -->
   <div class="row">
     <div *ngFor="let product of detailFunitureService.listProduct | async" class="col-md-6 col-xl-3">
