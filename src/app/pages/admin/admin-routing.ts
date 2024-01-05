@@ -16,7 +16,7 @@ export const route: Route[] = [
   {
     path: '',
     component: AdminComponent,
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
     children: [
       {
         path: 'product-manage',

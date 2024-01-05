@@ -1,0 +1,45 @@
+<!-- <div>
+    <h2>Login</h2>
+    <form (ngSubmit)="login()" #loginForm="ngForm">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" [(ngModel)]="username" required>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" [(ngModel)]="password" required>
+
+        <button type="submit" [disabled]="!loginForm.valid">Login</button>
+    </form>
+</div> -->
+
+<div class="mt-10 text-center">
+    <h2 class="text-2xl font-sans font-bold pb-4" style="font-size: 30px">CẤP QUYỀN CHO NHÂN VIÊN</h2>
+</div>
+<ng-container>
+    <form class="w-2/5 m-auto mt-10" nz-form nzNoColon nzLayout="vertical" (ngSubmit)="login()" #loginForm="ngForm">
+        <nz-form-item>
+            <nz-form-label class="font-bold" for="username"> TÊN ĐĂNG NHẬP</nz-form-label>
+            <nz-form-control>
+                <input type="text" nz-input id="username" name="username" [(ngModel)]="username" required
+                    placeholder="username" />
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-label class="font-bold" for="password"> MẬT KHẨU</nz-form-label>
+            <nz-form-control>
+                <nz-input-group [nzSuffix]="eye">
+                    <input nz-input [type]="showPassword ? 'text' : 'password'" pb-7 type="password" id="password"
+                        name="password" [(ngModel)]="password" required />
+                </nz-input-group>
+                <ng-template #eye>
+                    <span nz-icon [nzType]="showPassword ? 'eye-invisible' : 'eye'" nzTheme="outline"
+                        class="cursor-pointer" (click)="showPassword = !showPassword"></span>
+                </ng-template>
+            </nz-form-control>
+        </nz-form-item>
+        <div>
+            <button class="btn-submit p-2" [disabled]="!loginForm.valid">{{ "Đăng nhập" | uppercase }}</button>
+        </div>
+
+
+    </form>
+</ng-container>

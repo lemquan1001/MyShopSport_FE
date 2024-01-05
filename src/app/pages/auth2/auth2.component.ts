@@ -19,6 +19,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { SignupAdmin2Component } from './signup-admin/signup-admin.component';
 import { SignupAdminComponent } from '../admin/auth/signup-admin/signup-admin.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { RoleManageComponent } from './role-manage/role-manage.component';
 
 @Component({
   selector: 'app-auth2',
@@ -112,7 +113,7 @@ export class Auth2Component implements OnInit {
 
   openPasswordRecoveryModal() {
     const dialogRef = this.dialog.open(SignupAdmin2Component, {
-      width: '400px', // You can adjust the width and other options
+      width: '90%', // You can adjust the width and other options
     });
 
     dialogRef.afterClosed().subscribe(
@@ -129,6 +130,24 @@ export class Auth2Component implements OnInit {
 
   openModalForgotPassword() {
     const dialogRef = this.dialog.open(ForgotPasswordComponent, {
+      height: '60%',
+      width: '90%', // You can adjust the width and other options
+    });
+
+    dialogRef.afterClosed().subscribe(
+      (result) => {
+        // Handle the result when the modal is closed
+        console.log('Modal closed with result:', result);
+      },
+      (reason) => {
+        // Handle the reason when the modal is dismissed
+        console.log('Modal dismissed with reason:', reason);
+      }
+    );
+  }
+
+  openModalRoleAdmin() {
+    const dialogRef = this.dialog.open(RoleManageComponent, {
       height: '90%',
       width: '100%', // You can adjust the width and other options
     });
