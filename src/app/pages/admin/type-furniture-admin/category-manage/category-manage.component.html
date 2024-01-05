@@ -1,1 +1,36 @@
-<p>category-manage works!</p>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" style="color: white">Quản lý danh mục</a>
+    <div class="navbar-collapse" id="navbarColor02">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input type="search" ngModel name="key" id="searchName" class="form-control mr-sm-2" required />
+        </form>
+    </div>
+</nav>
+
+<div>
+    <div class="container" id="main-container">
+
+        <!-- Get List -->
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>CATEGORY NAME</th>
+                    <th>CATEGORY CODE</th>
+                </tr>
+            </thead>
+            <tbody *ngFor="let category of detailCategoryService.listCategory | async">
+                <tr>
+                    <td>{{category.id}}</td>
+                    <td>{{category.categoryName}}</td>
+                    <td>{{category.categoryCode}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

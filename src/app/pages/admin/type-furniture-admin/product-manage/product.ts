@@ -5,18 +5,16 @@ export interface Product {
   productCode: string;
   productName: string;
   description: string;
-  brand: string;
+  brand: {
+    id: number;
+    brandName: string;
+    brandCode: string;
+    description: string;
+  };
   category: {
     id: number;
     categoryCode: string;
     categoryName: string;
   };
-  //categoryId: number;
   status: string;
-  //   isActive: number;
-  //   image_overlay: string | null;
-  //   createdDate: string | null;
-  //   updatedDate: string | null;
-  //   createdBy: string | null;
-  //   updatedBy: string | null;
 }

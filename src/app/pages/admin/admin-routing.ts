@@ -6,10 +6,17 @@ import { BillManageComponent } from './type-furniture-admin/bill-manage/bill-man
 import { CategoryManageComponent } from './type-furniture-admin/category-manage/category-manage.component';
 import { DetailProductManageComponent } from './type-furniture-admin/detail-product-manage/detail-product-manage.component';
 import { ManageCustomerComponent } from './type-furniture-admin/manage-customer/manage-customer.component';
+import { LoginAdminComponent } from './auth/login-admin/login-admin.component';
+import { SignupAdminComponent } from './auth/signup-admin/signup-admin.component';
+import { AuthGuard } from '../auth.guard';
+import { ChangePasswordComponent } from './auth/change-password/change-password.component';
+import { BrandManageComponent } from './type-furniture-admin/brand-manage/brand-manage.component';
+
 export const route: Route[] = [
   {
     path: '',
     component: AdminComponent,
+    canActivate: [AuthGuard],
     children: [
       {
         path: 'product-manage',
@@ -24,12 +31,24 @@ export const route: Route[] = [
         component: CategoryManageComponent,
       },
       {
-        path: 'productDetail-manage',
-        component: DetailProductManageComponent,
+        path: 'brand-manage',
+        component: BrandManageComponent,
       },
       {
         path: 'customer-manage',
         component: ManageCustomerComponent,
+      },
+      {
+        path: 'login',
+        component: LoginAdminComponent,
+      },
+      {
+        path: 'signup',
+        component: SignupAdminComponent,
+      },
+      {
+        path: 'changePass',
+        component: ChangePasswordComponent,
       },
     ],
   },
