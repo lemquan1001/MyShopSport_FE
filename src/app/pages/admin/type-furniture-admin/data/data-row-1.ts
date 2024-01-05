@@ -18,9 +18,9 @@ export const serviceManagerAdmin = [
         routerLink: '/admin/categoty-manage',
       },
       {
-        key: 'quan_ly_chi_tiet_san_pham',
-        label: 'PRODUCT DETAILS',
-        routerLink: '/admin/productDetail-manage',
+        key: 'quan_ly_thuong_hieu',
+        label: 'BRAND',
+        routerLink: '/admin/brand-manage',
       },
       {
         key: 'quan_ly_don_hang',
