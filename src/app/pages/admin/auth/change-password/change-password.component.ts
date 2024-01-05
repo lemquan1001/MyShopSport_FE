@@ -14,6 +14,8 @@ import { DestroyService } from 'src/app/common/service/destroy.service';
   providers: [DestroyService],
 })
 export class ChangePasswordComponent {
+  showPassword = false;
+  showPassword1 = false;
   // Khai báo các thuộc tính ở đây
   login: string = '';
   oldPassword: string = '';
