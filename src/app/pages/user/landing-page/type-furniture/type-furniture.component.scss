@@ -9,9 +9,10 @@
   .wrap {
     @apply w-3/6 absolute;
     box-shadow: 0 10px 15px #0000001a;
-    left: 26%;
+    left: 16%;
     top: 25px;
     background: #fff;
+    width:800px;
   }
   .wrap::before {
     content: "";
@@ -22,6 +23,7 @@
     height: 40px;
     top: -15px;
     display: none;
+    // width: 1000px;
   }
   .sub-item {
     @apply leading-8 hover:cursor-pointer hover:underline hover:text-teal-700;
