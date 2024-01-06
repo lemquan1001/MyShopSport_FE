@@ -8,10 +8,7 @@
         <div class="menu-sub mt-2 mb-3">
           <ul class="mt-3">
             <li *ngFor="let sub of item.submenu" style="margin: auto">
-              <span
-                class="font-semibold sub-item"
-                (click)="showProductsByCategory(sub)"
-              >
+              <span class="font-semibold sub-item" (click)="showProductsByCategory(sub)">
                 {{ sub.name }}
               </span>
             </li>

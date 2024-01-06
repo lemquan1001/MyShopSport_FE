@@ -9,7 +9,7 @@ export const ListFurniture = [
     submenu: [
       { code: 'trang_phuc_the_thao', name: 'Không Logo', id: 4 },
       { code: 'trang_phuc_da_bong', name: 'Câu lạc bộ', id: 1 },
-      { code: 'trang_phuc_da_bong', name: 'Đội tuyển quốc qia', id: 7 },
+      { code: 'trang_phuc_da_bong', name: 'Đội tuyển quốc gia', id: 7 },
     ],
   },
   {
