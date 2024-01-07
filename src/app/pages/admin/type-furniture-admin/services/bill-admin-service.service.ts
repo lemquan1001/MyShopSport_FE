@@ -4,6 +4,7 @@ import { BillManage } from '../bill-manage/bill';
 import { ResponseAPINoContent } from 'src/app/common/types/response-api';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
+import { BillDetailManage } from '../bill-manage/bill-details';
 
 @Injectable({
   providedIn: 'root',
@@ -11,6 +12,8 @@ import { environment } from 'src/environments/environment';
 export class BillAdminService {
   isBillByStatus = new BehaviorSubject(false);
   listBill = new BehaviorSubject<BillManage[]>([]);
+
+  listBillDetail = new BehaviorSubject<BillDetailManage[]>([]);
 
   constructor(private http: HttpClient) {}
 
@@ -94,6 +97,33 @@ export class BillAdminService {
         catchError((error) => {
           console.error('Update failed:', error);
           throw error;
+        })
+      );
+  }
+
+  // public getBillDetails(billId: number): Observable<BillDetailManage[]> {
+  //   return this.http
+  //     .get<ResponseAPINoContent<BillDetailManage[]>>(
+  //       `http://localhost:8080/api/billDetail/getByBillId/${billId}`
+  //     )
+  //     .pipe(
+  //       map((res) => res.data),
+  //       tap((data) => {
+  //         console.log('Bill details received:', data);
+  //         this.listBillDetail.next(data);
+  //       })
+  //     );
+  // }
+
+  public getBillDetails(billId: number): Observable<BillDetailManage[]> {
+    return this.http
+      .get<BillDetailManage[]>(
+        `http://localhost:8080/api/billDetail/getByBillId/${billId}`
+      )
+      .pipe(
+        tap((data) => {
+          console.log('Bill details received:', data);
+          // this.listBillDetail.next(data);
         })
       );
   }
