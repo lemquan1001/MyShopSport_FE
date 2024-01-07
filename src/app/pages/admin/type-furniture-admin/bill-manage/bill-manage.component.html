@@ -58,9 +58,10 @@
                     <td>
                         <span class="material material-icons btn btn-primary"
                             (click)="onOpenModal(bill, 'edit')">check</span>
-                        <!-- <span class="material material-icons btn btn-warning">
+                        <span class="material material-icons btn btn-warning" (click)="onShowDetails(bill)">
                             visibility
-                        </span> -->
+                        </span>
+
                     </td>
                 </tr>
             </tbody>
@@ -153,6 +154,49 @@
                                 </button>
                             </div>
                         </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- VIEW BILL DETAILS -->
+        <div class="modal fade" id="updateProductModal2" aria-hidden="true">
+            <div class="modal-dialog text-center" role="document" style="display: flex; justify-content: center;">
+                <div class="modal-content text-center" style="width: 150%;">
+                    <div class="modal-header">
+                        <!-- Optionally add a title for the modal -->
+                        <h3 class="modal-title" id="updateProductModal2Label">List BillDetails of Customer <h2>{{
+                                editBill
+                                ? editBill.customer :"N/A" }}</h2>
+                        </h3>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>BRAND</th>
+                                    <th>DESCRIPTION</th>
+                                    <th>PRODUCTNAME</th>
+                                    <th>SIZE</th>
+                                    <th>QUANTITY</th>
+                                    <th>PRICE</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let billDetail of billDetails">
+                                    <td>{{ billDetail.brand }}</td>
+                                    <td>{{ billDetail.description }}</td>
+                                    <td>{{ billDetail.productName }}</td>
+                                    <td>{{ billDetail.size }}</td>
+                                    <td>{{ billDetail.quantify }}</td>
+                                    <td>{{ billDetail.price }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>

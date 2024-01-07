@@ -9,6 +9,7 @@ import { Bill } from 'src/app/pages/user/landing-page/type-furniture/new-funitur
 import { BillManage } from './bill';
 import { ResponseAPINoContent } from 'src/app/common/types/response-api';
 import { FormModule } from 'src/app/common/form-dynamic/form-module';
+import { BillDetailManage } from './bill-details';
 
 @Component({
   selector: 'app-bill-manage',
@@ -22,6 +23,8 @@ export class BillManageComponent {
   public bills: BillManage[] = [];
   public editBill: BillManage;
   public deleteBill: BillManage;
+
+  public billDetails: BillDetailManage[] = [];
 
   public selectedOptionText: string = '--CHỌN--'; // Default text for the button
   constructor(public detailBillService: BillAdminService) {}
@@ -104,24 +107,6 @@ export class BillManageComponent {
     );
   }
 
-  // public onOpenModal(bill: BillManage, mode: string): void {
-  //   const container = document.getElementById('main-container');
-  //   const button = document.createElement('button');
-  //   button.type = 'button';
-  //   button.style.display = 'none';
-  //   button.setAttribute('data-toggle', 'modal');
-  //   if (mode === 'edit') {
-  //     this.editBill = bill;
-  //     button.setAttribute('data-target', '#updateProductModal');
-  //   }
-  //   if (mode === 'delete') {
-  //     this.deleteBill = bill;
-  //     button.setAttribute('data-target', '#deleteProductModal');
-  //   }
-  //   container?.appendChild(button);
-  //   button.click();
-  // }
-
   public onOpenModal(bill: BillManage, mode: string): void {
     const container = document.getElementById('main-container');
     const button = document.createElement('button');
@@ -133,6 +118,19 @@ export class BillManageComponent {
       this.editBill = bill;
       button.setAttribute('data-target', '#updateProductModal');
     }
+    if (mode === 'edit2') {
+      this.editBill = bill;
+      button.setAttribute('data-target', '#updateProductModal2');
+      this.detailBillService.getBillDetails(bill.id).subscribe(
+        (data: BillDetailManage[]) => {
+          this.billDetails = data;
+          // console.log('Bill details received:', data);
+        },
+        (error) => {
+          console.error('Error fetching bill details: ', error);
+        }
+      );
+    }
     if (mode === 'delete') {
       this.deleteBill = this.deleteBill;
       button.setAttribute('data-target', '#deleteProductModal');
@@ -140,5 +138,20 @@ export class BillManageComponent {
 
     container?.appendChild(button);
     button.click();
+  }
+
+  onShowDetails(bill: BillManage): void {
+    // Make a request to get bill details for the selected bill
+    this.detailBillService.getBillDetails(bill.id).subscribe(
+      (data: BillDetailManage[]) => {
+        this.billDetails = data;
+        // console.log(data);
+        // Open the modal for displaying details
+        this.onOpenModal(bill, 'edit2');
+      },
+      (error) => {
+        console.error('Error fetching bill details: ', error);
+      }
+    );
   }
 }
