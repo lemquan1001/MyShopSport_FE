@@ -247,18 +247,11 @@
 
             <div class="form-group">
               <label for="brand.id">BRAND:</label>
-              <select ngModel="{{editProduct.brand?.id}}" name="brandId" class="form-control" id="brandId" required>
+              <select [(ngModel)]="editProduct.brand.id" name="brandId" class="form-control" id="brandId" required>
                 <option disabled selected>Chọn một mục</option>
                 <option *ngFor="let brand of brands" [value]="brand.id">{{ brand.brandName }}</option>
               </select>
             </div>
-
-            <!-- <div class="form-group">
-              <label for="category.id">CATEGORY ID:</label>
-              <input type="text" ngModel="{{ editProduct.category.id }}" name="categoryId" class="form-control"
-                id="categoryId" placeholder="Enter Category ID" required />
-
-            </div> -->
 
             <div class="form-group">
               <label for="category.id">CATEGORY ID:</label>

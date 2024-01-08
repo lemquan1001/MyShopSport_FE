@@ -115,10 +115,15 @@ export class ProductManageComponent implements OnInit {
     );
   }
 
-  public onUpdateProduct(product: Product): void {
-    this.detailFunitureService.updateProduct(product).subscribe(
-      (reponse: Product) => {
-        console.log(reponse);
+  public onUpdateProduct(productFormValue: any): void {
+    // Assuming productFormValue contains the form data
+    const updatedProduct: Product = {
+      ...this.editProduct,
+      ...productFormValue,
+    };
+    this.detailFunitureService.updateProduct(updatedProduct).subscribe(
+      (response: Product) => {
+        console.log(response);
         this.getListProduct();
       },
       (error: HttpErrorResponse) => {
@@ -150,6 +155,11 @@ export class ProductManageComponent implements OnInit {
     }
     if (mode === 'edit') {
       this.editProduct = product;
+
+      // Set the selectedBrandId and selectedCategoryId
+      this.selectedBrandId = this.editProduct.brand.id;
+      this.selectedCategoryId = this.editProduct.category.id;
+
       button.setAttribute('data-target', '#updateProductModal');
     }
     if (mode === 'delete') {
